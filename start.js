@@ -28,7 +28,7 @@ cfgFile = cfgFile.replace(/{{([^}]+)}}/g, function(text, key) {
 fs.writeFileSync('./config.ini', cfgFile);
 
 // Start subprocess
-child_process.execSync('./bin/grafana-server -c ../config.ini', {
+child_process.execSync('./bin/grafana-server --config ../config.ini', {
   cwd:  path.join(__dirname, 'grafana-2.0.2'),
   env:  process.env
 });
