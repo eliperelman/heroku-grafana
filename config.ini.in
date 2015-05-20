@@ -1,0 +1,21 @@
+##################### Grafana Configuration #####################
+
+app_mode = production
+
+#################################### Server ####################################
+[server]
+http_port = {{PORT}}
+
+#################################### Database ####################################
+[database]
+type = postgres
+host = {{DB_HOST}}
+name = {{DB_NAME}}
+user = {{DB_USER}}
+password = {{DB_PASS}}
+ssl_mode = require
+
+#################################### Logging ##########################
+[log]
+mode = console
+level = Warn
