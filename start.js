@@ -1,7 +1,8 @@
-var url = require('url');
-var assert = require('assert');
-var fs = require('fs');
+var url           = require('url');
+var assert        = require('assert');
+var fs            = require('fs');
 var child_process = require('child_process');
+var path          = require('path');
 
 // Parameters to be substituted in
 var params = {};
