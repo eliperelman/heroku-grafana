@@ -15,6 +15,10 @@ user = {{DB_USER}}
 password = {{DB_PASS}}
 ssl_mode = require
 
+#################################### Analytics ####################################
+[analytics]
+reporting_enabled = true
+
 #################################### Logging ##########################
 [log]
 mode = console
