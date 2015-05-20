@@ -1,0 +1,4 @@
+/*! grafana - v2.0.2 - 2015-04-22
+ * Copyright (c) 2015 Torkel Ödegaard; Licensed Apache License */
+
+define(["lodash"],function(a){"use strict";function b(a){this.target=a}var c=b.prototype;return c.build=function(){return this.target.rawQuery?this._modifyRawQuery():this._buildQuery()},c._buildQuery=function(){var b=this.target;if(console.log("Build Query: target = ",b),!b.measurement)throw"Metric measurement is missing";var c="SELECT ",d=b.measurement,e=b["function"]||"mean";return d.match("^/.*/")||d.match(/^merge\(.*\)/)||(d='"'+d+'"'),c+=e+"(value)",c+=" FROM "+d+" WHERE $timeFilter",c+=a.map(b.tags,function(a,b){return" AND "+b+"='"+a+"'"}).join(""),c+=" GROUP BY time($interval)",b.fill&&(c+=" fill("+b.fill+")"),c+=" ORDER BY asc",b.query=c,c},c._modifyRawQuery=function(){var a=this.target.query.replace(";","");return a},b});
