@@ -22,4 +22,4 @@ reporting_enabled = true
 #################################### Logging ##########################
 [log]
 mode = console
-level = Warn
+level = Info
