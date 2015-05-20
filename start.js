@@ -21,14 +21,15 @@ params.DB_PASS = db.auth.split(':')[1];
 
 
 // Substitute parameters in
-var cfgFile = fs.readFileSync('./config.ini.in').toString();
-cfgFile = cfgFile.replace(/{{([^}]+)}}/g, function(text, key) {
+var cfg = fs.readFileSync('./config.ini.in').toString();
+cfg = cfg.replace(/{{([^}]+)}}/g, function(text, key) {
   return params[key];
 });
-fs.writeFileSync('./config.ini', cfgFile);
+var cfgFile = path.join(__dirname, 'config.ini');
+fs.writeFileSync(cfgFile, cfg, {encoding: 'utf-8'});
 
 // Start subprocess
-child_process.execSync('./bin/grafana-server --config ../config.ini', {
+child_process.execSync('./bin/grafana-server --config ' + cfgFile, {
   cwd:  path.join(__dirname, 'grafana-2.0.2'),
   env:  process.env
 });
