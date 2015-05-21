@@ -18,12 +18,18 @@ GF_SECURITY_ADMIN_USER=''               # Admin username
 GF_SECURITY_ADMIN_PASSWORD=''           # Admin password
 GF_SECURITY_SECRET_KEY=''               # Secret for signing
 
-GF_USER_ALLOW_SIGN_UP='false'           # Allow users to sign-up
-GF_USER_ALLOW_ORG_CREATE='false'        # Allow users to create new orgs
-GF_USER_AUTO_ASSIGN_ORG='true'          # Auto-assign users to default org
-GF_USER_AUTO_ASSIGN_ORG_ROLE='Viewer'   # Set default role to viewer
+GF_USERS_ALLOW_SIGN_UP='false'          # Allow users to sign-up
+GF_USERS_ALLOW_ORG_CREATE='false'       # Allow users to create new orgs
+GF_USERS_AUTO_ASSIGN_ORG='true'         # Auto-assign users to default org
+GF_USERS_AUTO_ASSIGN_ORG_ROLE='Viewer'  # Set default role to viewer
 
 GF_ANALYTICS_GOOGLE_ANALYTICS_UA_ID=''  # Google Analytics tracking code
+
+GF_AUTH_GOOGLE_ENABLED='enable'         # Enable authentication with Google
+GF_AUTH_GOOGLE_CLIENT_ID='...'          # Client ID from API project
+GF_AUTH_GOOGLE_CLIENT_SECRET='...'      # Client secret from API project
+GF_AUTH_GOOGLE_ALLOWED_DOMAINS=''       # Allows domains, eg. mozilla.com
+GF_AUTH_GOOGLE_ALLOW_SIGN_UP='true'     # Allow authenticated users to sign-up
 ```
 
 License
