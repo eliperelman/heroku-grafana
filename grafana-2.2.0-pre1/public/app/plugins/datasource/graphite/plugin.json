@@ -1,0 +1,16 @@
+{
+  "pluginType": "datasource",
+  "name": "Graphite",
+
+  "type": "graphite",
+  "serviceName": "GraphiteDatasource",
+
+  "module": "plugins/datasource/graphite/datasource",
+
+  "partials": {
+    "config": "app/plugins/datasource/graphite/partials/config.html"
+  },
+
+  "metrics": true,
+  "annotations": true
+}

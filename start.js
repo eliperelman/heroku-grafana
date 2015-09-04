@@ -30,6 +30,6 @@ fs.writeFileSync(cfgFile, cfg, {encoding: 'utf-8'});
 
 // Start subprocess
 child_process.execSync('./bin/grafana-server --config ' + cfgFile, {
-  cwd:  path.join(__dirname, 'grafana-2.0.2'),
+  cwd:  path.join(__dirname, 'grafana-2.2.0-pre1'),
   env:  process.env
 });
