@@ -1,4 +1,0 @@
-/*! grafana - v2.0.2 - 2015-04-22
- * Copyright (c) 2015 Torkel Ödegaard; Licensed Apache License */
-
-define(["plugins/datasource/influxdb/queryBuilder"],function(a){"use strict";describe("InfluxQueryBuilder",function(){describe("series with mesurement only",function(){var b=new a({measurement:"cpu"}),c=b.build();it("should generate correct query",function(){expect(c).to.be('SELECT mean(value) FROM "cpu" WHERE $timeFilter GROUP BY time($interval) ORDER BY asc')})}),describe("series with tags only",function(){var b=new a({measurement:"cpu",tags:{hostname:"server1"}}),c=b.build();it("should generate correct query",function(){expect(c).to.be("SELECT mean(value) FROM \"cpu\" WHERE $timeFilter AND hostname='server1' GROUP BY time($interval) ORDER BY asc")})})})});
