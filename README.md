@@ -36,6 +36,8 @@ heroku config:set GF_DATABASE_PASSWORD=<password>
 heroku config:set GF_DATABASE_SSL_MODE=<disable | require | verify-null>
 ```
 
+Note: Consider [configuring Grafana's session provider](http://docs.grafana.org/installation/configuration/#session) to also use Postgres.
+
 #### Deploy
 
 1. Deploy: `git push heroku master`
@@ -56,6 +58,6 @@ heroku config:set GF_SECURITY_SECRET_KEY=<secret key>
 The binary for the Grafana server has been build specifically for the platform running on Heroku, which is 64-bit Linux. If you are running another OS, you will not be able to run this locally as-is.
 
 ```sh
-## Launch the grafana server locally
+# Launch the grafana server locally
 heroku local web
 ```
