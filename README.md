@@ -73,7 +73,7 @@ heroku config:set GF_SECURITY_SECRET_KEY=<secret key>
 
 ## Running locally
 
-The binary for the Grafana server has been build specifically for the platform running on Heroku, which is 64-bit Linux. If you are running another OS, you will not be able to run this locally as-is.
+The binary for the Grafana server has been built specifically for the platform running on Heroku, which is 64-bit Linux. If you are running another OS, you will not be able to run this locally as-is.
 
 ```sh
 # Launch the grafana server locally
