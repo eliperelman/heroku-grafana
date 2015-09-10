@@ -1,1 +1,1 @@
-web: GF_SERVER_HTTP_PORT=$PORT ./grafana/bin/grafana-server --config=./grafana/conf/config.ini
+web: GF_SERVER_HTTP_PORT=$PORT ./grafana-server
