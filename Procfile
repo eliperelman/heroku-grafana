@@ -1,1 +1,1 @@
-web: /app/grafana/bin/grafana-server cfg:default.server.http_port=$PORT
+web: ./grafana/bin/grafana-server cfg:default.server.http_port=$PORT
