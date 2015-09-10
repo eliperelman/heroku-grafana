@@ -31,12 +31,30 @@ heroku config:set GF_DATABASE_HOST=<host>
 heroku config:set GF_DATABASE_NAME=<dbname>
 heroku config:set GF_DATABASE_USER=<username>
 heroku config:set GF_DATABASE_PASSWORD=<password>
-
-# depending on whatever else you may store in this database, determine your ssl setting
-heroku config:set GF_DATABASE_SSL_MODE=<disable | require | verify-null>
+heroku config:set GF_DATABASE_SSL_MODE=require
 ```
 
-Note: Consider [configuring Grafana's session provider](http://docs.grafana.org/installation/configuration/#session) to also use Postgres.
+Grafana also needs some configuration to use Postgres as the session provider.
+
+First, you'll need to connect to your Postgres DB to create the session table:
+
+```sh
+# only swap out for values where <> is below
+heroku pg_psql --app <app-name> DATABASE_URL
+
+\connect <dbname>
+CREATE TABLE session (key CHAR(16) NOT NULL, data bytea, expiry INT NOT NULL, PRIMARY KEY (key));
+
+# use \dt to ensure the session table exists
+\dt
+```
+
+Now configure Grafana to use Postgres as the session store:
+
+```sh
+heroku config:set GF_SESSION_PROVIDER=postgres
+heroku config:set GF_SESSION_PROVIDER_CONFIG="$(heroku pg:credentials DATABASE | grep dbname | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')"
+```
 
 #### Deploy
 
