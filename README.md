@@ -40,7 +40,7 @@ First, you'll need to connect to your Postgres DB to create the session table:
 
 ```sh
 # only swap out for values where <> is below
-heroku pg_psql --app <app-name> DATABASE_URL
+heroku pg:psql --app <app-name> DATABASE_URL
 
 \connect <dbname>
 CREATE TABLE session (key CHAR(16) NOT NULL, data bytea, expiry INT NOT NULL, PRIMARY KEY (key));
