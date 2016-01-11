@@ -9,15 +9,15 @@
     <title>Grafana</title>
 
 		[[if .User.LightTheme]]
-		  <link rel="stylesheet" href="[[.AppSubUrl]]/css/grafana.light.min.eff1f636.css">
+		  <link rel="stylesheet" href="[[.AppSubUrl]]/public/css/grafana.light.min.fbdfba63.css">
 		[[else]]
-		  <link rel="stylesheet" href="[[.AppSubUrl]]/css/grafana.dark.min.237d21b1.css">
+		  <link rel="stylesheet" href="[[.AppSubUrl]]/public/css/grafana.dark.min.a95b3754.css">
 		[[end]]
 
-    <link rel="icon" type="image/png" href="[[.AppSubUrl]]/img/fav32.png">
+    <link rel="icon" type="image/png" href="[[.AppSubUrl]]/public/img/fav32.png">
 		<base href="[[.AppSubUrl]]/" />
 
-		<script src="[[.AppSubUrl]]/app/app.59b0132d.js"></script>
+		<script src="[[.AppSubUrl]]/public/app/app.ca0ab6f9.js"></script>
   </head>
 
 	<body ng-cloak ng-controller="GrafanaCtrl" ng-class="{'sidemenu-open': contextSrv.sidemenu}">
@@ -38,7 +38,6 @@
 			</div>
 
 			<div ng-view class="main-view"></div>
-			</div>
 
 		</div>
 
@@ -50,7 +49,7 @@
 			settings: [[.Settings]],
 		};
 
-    require(['app'], function (app) {
+    require(['app/app'], function (app) {
 	    app.boot();
     })
 	</script>

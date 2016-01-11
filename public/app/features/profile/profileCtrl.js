@@ -1,0 +1,4 @@
+/*! grafana - v2.6.0 - 2015-12-14
+ * Copyright (c) 2015 Torkel Ödegaard; Licensed Apache-2.0 */
+
+define(["angular","app/core/config"],function(a,b){"use strict";var c=a.module("grafana.controllers");c.controller("ProfileCtrl",["$scope","backendSrv","contextSrv","$location",function(a,c,d,e){a.init=function(){a.getUser(),a.getUserOrgs()},a.getUser=function(){c.get("/api/user").then(function(b){a.user=b,a.user.theme=b.theme||"dark",a.old_theme=a.user.theme})},a.getUserOrgs=function(){c.get("/api/user/orgs").then(function(b){a.orgs=b})},a.setUsingOrg=function(a){c.post("/api/user/using/"+a.orgId).then(function(){window.location.href=b.appSubUrl+"/profile"})},a.update=function(){a.userForm.$valid&&c.put("/api/user/",a.user).then(function(){d.user.name=a.user.name||a.user.login,a.old_theme!==a.user.theme&&(window.location.href=b.appSubUrl+e.path())})},a.init()}])});

@@ -1,0 +1,4 @@
+/*! grafana - v2.6.0 - 2015-12-14
+ * Copyright (c) 2015 Torkel Ödegaard; Licensed Apache-2.0 */
+
+define(["angular","lodash","app/core/utils/kbn"],function(a,b,c){"use strict";var d=a.module("grafana.services");d.service("playlistSrv",["$location","$rootScope","$timeout",function(b,d,e){var f=this;this.next=function(){e.cancel(f.cancelPromise),a.element(window).unbind("resize");var c=f.dashboards[f.index%f.dashboards.length];b.url("dashboard/"+c.uri),f.index++,f.cancelPromise=e(f.next,f.interval)},this.prev=function(){f.index=Math.max(f.index-2,0),f.next()},this.start=function(a,b){f.stop(),f.index=0,f.interval=c.interval_to_ms(b),f.dashboards=a,d.playlistSrv=this,f.cancelPromise=e(f.next,f.interval),f.next()},this.stop=function(){f.index=0,f.cancelPromise&&e.cancel(f.cancelPromise),d.playlistSrv=null}}])});

@@ -1,4 +1,0 @@
-/*! grafana - v2.2.0-pre1 - 2015-09-02
- * Copyright (c) 2015 Torkel Ödegaard; Licensed Apache-2.0 */
-
-define(["./helpers","panels/overview/module"],function(a){"use strict";describe("OverviewCtrl",function(){var b=new a.ControllerTestContext;beforeEach(module("grafana.services")),beforeEach(module("grafana.panels.overview")),beforeEach(b.providePhase()),beforeEach(b.createControllerPhase("OverviewCtrl")),describe("when query return error",function(){beforeEach(function(){b.datasource.query=function(){return b.$q.reject({message:"Some error"})},b.scope.get_data(),b.scope.$digest()}),it("panel.error should be set",function(){expect(b.scope.panel.error).to.be("Some error")})})})});

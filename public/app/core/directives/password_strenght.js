@@ -1,0 +1,4 @@
+/*! grafana - v2.6.0 - 2015-12-14
+ * Copyright (c) 2015 Torkel Ödegaard; Licensed Apache-2.0 */
+
+define(["../core_module"],function(a){"use strict";a.directive("passwordStrength",function(){var a='<div class="password-strength small" ng-if="!loginMode" ng-class="strengthClass"><em>{{strengthText}}</em></div>';return{template:a,scope:{password:"="},link:function(a){function b(b){return b?b.length<4?(a.strengthText="strength: weak sauce.",void(a.strengthClass="password-strength-bad")):b.length<=8?(a.strengthText="strength: you can do better.",void(a.strengthClass="password-strength-ok")):(a.strengthText="strength: strong like a bull.",void(a.strengthClass="password-strength-good")):(a.strengthText="",void(a.strengthClass="hidden"))}a.strengthClass="",a.$watch("password",b)}}})});

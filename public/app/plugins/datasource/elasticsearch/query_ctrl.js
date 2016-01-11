@@ -1,0 +1,4 @@
+/*! grafana - v2.6.0 - 2015-12-14
+ * Copyright (c) 2015 Torkel Ödegaard; Licensed Apache-2.0 */
+
+define(["angular"],function(a){"use strict";var b=a.module("grafana.controllers");b.controller("ElasticQueryCtrl",["$scope","$timeout","uiSegmentSrv",function(b,c,d){b.esVersion=b.datasource.esVersion,b.init=function(){var a=b.target;a&&b.queryUpdated()},b.getFields=function(c){var e=a.toJson({find:"fields",type:c});return b.datasource.metricFindQuery(e).then(d.transformToSegments(!1)).then(null,b.handleQueryError)},b.queryUpdated=function(){var c=a.toJson(b.datasource.queryBuilder.build(b.target),!0);c!==b.oldQueryRaw&&(b.rawQueryOld=c,b.get_data()),b.appEvent("elastic-query-updated")},b.handleQueryError=function(a){return b.parserError=a.message||"Failed to issue metric query",[]},b.init()}])});

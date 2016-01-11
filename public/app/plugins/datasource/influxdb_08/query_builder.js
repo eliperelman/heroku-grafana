@@ -1,0 +1,4 @@
+/*! grafana - v2.6.0 - 2015-12-14
+ * Copyright (c) 2015 Torkel Ödegaard; Licensed Apache-2.0 */
+
+define([],function(){"use strict";function a(a){this.target=a}var b=a.prototype;return b.build=function(){return this.target.rawQuery?this._modifyRawQuery():this._buildQuery()},b._buildQuery=function(){var a=this.target,b="select ",c=a.series;return c.match("^/.*/")||c.match(/^merge\(.*\)/)||(c='"'+c+'"'),a.groupby_field&&(b+=a.groupby_field+", "),b+=a["function"]+"("+a.column+")",b+=" from "+c+" where $timeFilter",a.condition&&(b+=" and "+a.condition),b+=" group by time($interval)",a.groupby_field&&(b+=", "+a.groupby_field,this.groupByField=a.groupby_field),a.fill&&(b+=" fill("+a.fill+")"),b+=" order asc",a.query=b,b},b._modifyRawQuery=function(){var a=this.target.query.replace(";",""),b=a.split(" "),c=a.toLowerCase().split(" ");return-1!==c[1].indexOf(",")&&(this.groupByField=c[1].replace(",","")),b.join(" ")},a});

@@ -1,0 +1,4 @@
+/*! grafana - v2.6.0 - 2015-12-14
+ * Copyright (c) 2015 Torkel Ödegaard; Licensed Apache-2.0 */
+
+define(["require","exports","./directives/array_join","./directives/give_focus","./filters/filters","./directives/annotation_tooltip","./directives/body_class","./directives/config_modal","./directives/confirm_click","./directives/dash_edit_link","./directives/dash_upload","./directives/dropdown_typeahead","./directives/grafana_version_check","./directives/metric_segment","./directives/misc","./directives/ng_model_on_blur","./directives/password_strenght","./directives/spectrum_picker","./directives/tags","./directives/topnav","./directives/value_select_dropdown","./routes/all","./controllers/all","./services/all","./jquery_extended","./partials"],function(a,b,c,d,e){function f(a){for(var c in a)b.hasOwnProperty(c)||(b[c]=a[c])}f(c),f(d),f(e)});

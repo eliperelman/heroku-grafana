@@ -1,0 +1,4 @@
+/*! grafana - v2.6.0 - 2015-12-14
+ * Copyright (c) 2015 Torkel Ödegaard; Licensed Apache-2.0 */
+
+define(["angular"],function(a){"use strict";var b=a.module("grafana.controllers");b.controller("SaveDashboardAsCtrl",["$scope","backendSrv","$location",function(a,b,c){function d(d){return b.saveDashboard(a.clone,d).then(function(b){a.appEvent("alert-success",["Dashboard saved","Saved as "+a.clone.title]),c.url("/dashboard/db/"+b.slug),a.appEvent("dashboard-saved",a.clone),a.dismiss()})}a.init=function(){a.clone.id=null,a.clone.editable=!0,a.clone.title=a.clone.title+" Copy"},a.keyDown=function(b){13===b.keyCode&&a.saveClone()},a.saveClone=function(){d({overwrite:!1}).then(null,function(b){b.data&&"name-exists"===b.data.status&&(b.isHandled=!0,a.appEvent("confirm-modal",{title:"Another dashboard with the same name exists",text:"Would you still like to save this dashboard?",yesText:"Save & Overwrite",icon:"fa-warning",onConfirm:function(){d({overwrite:!0})}}))})}}])});

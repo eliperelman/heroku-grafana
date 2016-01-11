@@ -1,4 +1,817 @@
-/*! grafana - v2.2.0-pre1 - 2015-09-02
- * Copyright (c) 2015 Torkel Ödegaard; Licensed Apache-2.0 */
+/* Flot plugin for rendering pie charts.
 
-!function(a){function b(b){function f(b){x||(x=!0,s=b.getCanvas(),t=a(s).parent(),e=b.getOptions(),b.setData(g(b.getData())))}function g(b){for(var c=0,d=0,f=0,g=e.series.pie.combine.color,h=[],i=0;i<b.length;++i){var j=b[i].data;a.isArray(j)&&1==j.length&&(j=j[0]),a.isArray(j)?j[1]=!isNaN(parseFloat(j[1]))&&isFinite(j[1])?+j[1]:0:j=!isNaN(parseFloat(j))&&isFinite(j)?[1,+j]:[1,0],b[i].data=[j]}for(var i=0;i<b.length;++i)c+=b[i].data[0][1];for(var i=0;i<b.length;++i){var j=b[i].data[0][1];j/c<=e.series.pie.combine.threshold&&(d+=j,f++,g||(g=b[i].color))}for(var i=0;i<b.length;++i){var j=b[i].data[0][1];(2>f||j/c>e.series.pie.combine.threshold)&&h.push({data:[[1,j]],color:b[i].color,label:b[i].label,angle:j*Math.PI*2/c,percent:j/(c/100)})}return f>1&&h.push({data:[[1,d]],color:g,label:e.series.pie.combine.label,angle:d*Math.PI*2/c,percent:d/(c/100)}),h}function h(b,f){function g(){y.clearRect(0,0,k,l),t.children().filter(".pieLabel, .pieLabelBackground").remove()}function h(){var a=e.series.pie.shadow.left,b=e.series.pie.shadow.top,c=10,d=e.series.pie.shadow.alpha,f=e.series.pie.radius>1?e.series.pie.radius:u*e.series.pie.radius;if(!(f>=k/2-a||f*e.series.pie.tilt>=l/2-b||c>=f)){y.save(),y.translate(a,b),y.globalAlpha=d,y.fillStyle="#000",y.translate(v,w),y.scale(1,e.series.pie.tilt);for(var g=1;c>=g;g++)y.beginPath(),y.arc(0,0,f,0,2*Math.PI,!1),y.fill(),f-=g;y.restore()}}function j(){function b(a,b,c){0>=a||isNaN(a)||(c?y.fillStyle=b:(y.strokeStyle=b,y.lineJoin="round"),y.beginPath(),Math.abs(a-2*Math.PI)>1e-9&&y.moveTo(0,0),y.arc(0,0,f,g,g+a/2,!1),y.arc(0,0,f,g+a/2,g+a,!1),y.closePath(),g+=a,c?y.fill():y.stroke())}function c(){function b(b,c,d){if(0==b.data[0][1])return!0;var g,h=e.legend.labelFormatter,i=e.series.pie.label.formatter;g=h?h(b.label,b):b.label,i&&(g=i(g,b));var j=(c+b.angle+c)/2,m=v+Math.round(Math.cos(j)*f),n=w+Math.round(Math.sin(j)*f)*e.series.pie.tilt,o="<span class='pieLabel' id='pieLabel"+d+"' style='position:absolute;top:"+n+"px;left:"+m+"px;'>"+g+"</span>";t.append(o);var p=t.children("#pieLabel"+d),q=n-p.height()/2,r=m-p.width()/2;if(p.css("top",q),p.css("left",r),0-q>0||0-r>0||l-(q+p.height())<0||k-(r+p.width())<0)return!1;if(0!=e.series.pie.label.background.opacity){var s=e.series.pie.label.background.color;null==s&&(s=b.color);var u="top:"+q+"px;left:"+r+"px;";a("<div class='pieLabelBackground' style='position:absolute;width:"+p.width()+"px;height:"+p.height()+"px;"+u+"background-color:"+s+";'></div>").css("opacity",e.series.pie.label.background.opacity).insertBefore(p)}return!0}for(var c=d,f=e.series.pie.label.radius>1?e.series.pie.label.radius:u*e.series.pie.label.radius,g=0;g<n.length;++g){if(n[g].percent>=100*e.series.pie.label.threshold&&!b(n[g],c,g))return!1;c+=n[g].angle}return!0}var d=Math.PI*e.series.pie.startAngle,f=e.series.pie.radius>1?e.series.pie.radius:u*e.series.pie.radius;y.save(),y.translate(v,w),y.scale(1,e.series.pie.tilt),y.save();for(var g=d,h=0;h<n.length;++h)n[h].startAngle=g,b(n[h].angle,n[h].color,!0);if(y.restore(),e.series.pie.stroke.width>0){y.save(),y.lineWidth=e.series.pie.stroke.width,g=d;for(var h=0;h<n.length;++h)b(n[h].angle,e.series.pie.stroke.color,!1);y.restore()}return i(y),y.restore(),e.series.pie.label.show?c():!0}if(t){var k=b.getPlaceholder().width(),l=b.getPlaceholder().height(),m=t.children().filter(".legend").children().width()||0;y=f,x=!1,u=Math.min(k,l/e.series.pie.tilt)/2,w=l/2+e.series.pie.offset.top,v=k/2,"auto"==e.series.pie.offset.left?e.legend.position.match("w")?v+=m/2:v-=m/2:v+=e.series.pie.offset.left,u>v?v=u:v>k-u&&(v=k-u);var n=b.getData(),o=0;do o>0&&(u*=d),o+=1,g(),e.series.pie.tilt<=.8&&h();while(!j()&&c>o);o>=c&&(g(),t.prepend("<div class='error'>Could not draw pie with labels contained inside canvas</div>")),b.setSeries&&b.insertLegend&&(b.setSeries(n),b.insertLegend())}}function i(a){if(e.series.pie.innerRadius>0){a.save();var b=e.series.pie.innerRadius>1?e.series.pie.innerRadius:u*e.series.pie.innerRadius;a.globalCompositeOperation="destination-out",a.beginPath(),a.fillStyle=e.series.pie.stroke.color,a.arc(0,0,b,0,2*Math.PI,!1),a.fill(),a.closePath(),a.restore(),a.save(),a.beginPath(),a.strokeStyle=e.series.pie.stroke.color,a.arc(0,0,b,0,2*Math.PI,!1),a.stroke(),a.closePath(),a.restore()}}function j(a,b){for(var c=!1,d=-1,e=a.length,f=e-1;++d<e;f=d)(a[d][1]<=b[1]&&b[1]<a[f][1]||a[f][1]<=b[1]&&b[1]<a[d][1])&&b[0]<(a[f][0]-a[d][0])*(b[1]-a[d][1])/(a[f][1]-a[d][1])+a[d][0]&&(c=!c);return c}function k(a,c){for(var d,e,f=b.getData(),g=b.getOptions(),h=g.series.pie.radius>1?g.series.pie.radius:u*g.series.pie.radius,i=0;i<f.length;++i){var k=f[i];if(k.pie.show){if(y.save(),y.beginPath(),y.moveTo(0,0),y.arc(0,0,h,k.startAngle,k.startAngle+k.angle/2,!1),y.arc(0,0,h,k.startAngle+k.angle/2,k.startAngle+k.angle,!1),y.closePath(),d=a-v,e=c-w,y.isPointInPath){if(y.isPointInPath(a-v,c-w))return y.restore(),{datapoint:[k.percent,k.data],dataIndex:0,series:k,seriesIndex:i}}else{var l=h*Math.cos(k.startAngle),m=h*Math.sin(k.startAngle),n=h*Math.cos(k.startAngle+k.angle/4),o=h*Math.sin(k.startAngle+k.angle/4),p=h*Math.cos(k.startAngle+k.angle/2),q=h*Math.sin(k.startAngle+k.angle/2),r=h*Math.cos(k.startAngle+k.angle/1.5),s=h*Math.sin(k.startAngle+k.angle/1.5),t=h*Math.cos(k.startAngle+k.angle),x=h*Math.sin(k.startAngle+k.angle),z=[[0,0],[l,m],[n,o],[p,q],[r,s],[t,x]],A=[d,e];if(j(z,A))return y.restore(),{datapoint:[k.percent,k.data],dataIndex:0,series:k,seriesIndex:i}}y.restore()}}return null}function l(a){n("plothover",a)}function m(a){n("plotclick",a)}function n(a,c){var d=b.offset(),f=parseInt(c.pageX-d.left),g=parseInt(c.pageY-d.top),h=k(f,g);if(e.grid.autoHighlight)for(var i=0;i<z.length;++i){var j=z[i];j.auto!=a||h&&j.series==h.series||p(j.series)}h&&o(h.series,a);var l={pageX:c.pageX,pageY:c.pageY};t.trigger(a,[l,h])}function o(a,c){var d=q(a);-1==d?(z.push({series:a,auto:c}),b.triggerRedrawOverlay()):c||(z[d].auto=!1)}function p(a){null==a&&(z=[],b.triggerRedrawOverlay());var c=q(a);-1!=c&&(z.splice(c,1),b.triggerRedrawOverlay())}function q(a){for(var b=0;b<z.length;++b){var c=z[b];if(c.series==a)return b}return-1}function r(a,b){function c(a){a.angle<=0||isNaN(a.angle)||(b.fillStyle="rgba(255, 255, 255, "+d.series.pie.highlight.opacity+")",b.beginPath(),Math.abs(a.angle-2*Math.PI)>1e-9&&b.moveTo(0,0),b.arc(0,0,e,a.startAngle,a.startAngle+a.angle/2,!1),b.arc(0,0,e,a.startAngle+a.angle/2,a.startAngle+a.angle,!1),b.closePath(),b.fill())}var d=a.getOptions(),e=d.series.pie.radius>1?d.series.pie.radius:u*d.series.pie.radius;b.save(),b.translate(v,w),b.scale(1,d.series.pie.tilt);for(var f=0;f<z.length;++f)c(z[f].series);i(b),b.restore()}var s=null,t=null,u=null,v=null,w=null,x=!1,y=null,z=[];b.hooks.processOptions.push(function(a,b){b.series.pie.show&&(b.grid.show=!1,"auto"==b.series.pie.label.show&&(b.series.pie.label.show=b.legend.show?!1:!0),"auto"==b.series.pie.radius&&(b.series.pie.radius=b.series.pie.label.show?.75:1),b.series.pie.tilt>1?b.series.pie.tilt=1:b.series.pie.tilt<0&&(b.series.pie.tilt=0))}),b.hooks.bindEvents.push(function(a,b){var c=a.getOptions();c.series.pie.show&&(c.grid.hoverable&&b.unbind("mousemove").mousemove(l),c.grid.clickable&&b.unbind("click").click(m))}),b.hooks.processDatapoints.push(function(a,b,c,d){var e=a.getOptions();e.series.pie.show&&f(a,b,c,d)}),b.hooks.drawOverlay.push(function(a,b){var c=a.getOptions();c.series.pie.show&&r(a,b)}),b.hooks.draw.push(function(a,b){var c=a.getOptions();c.series.pie.show&&h(a,b)})}var c=10,d=.95,e={series:{pie:{show:!1,radius:"auto",innerRadius:0,startAngle:1.5,tilt:1,shadow:{left:5,top:15,alpha:.02},offset:{top:0,left:"auto"},stroke:{color:"#fff",width:1},label:{show:"auto",formatter:function(a,b){return"<div style='font-size:x-small;text-align:center;padding:2px;color:"+b.color+";'>"+a+"<br/>"+Math.round(b.percent)+"%</div>"},radius:1,background:{color:null,opacity:0},threshold:0},combine:{threshold:-1,color:null,label:"Other"},highlight:{opacity:.5}}}};a.plot.plugins.push({init:b,options:e,name:"pie",version:"1.1"})}(jQuery);
+Copyright (c) 2007-2013 IOLA and Ole Laursen.
+Licensed under the MIT license.
+
+The plugin assumes that each series has a single data value, and that each
+value is a positive integer or zero.  Negative numbers don't make sense for a
+pie chart, and have unpredictable results.  The values do NOT need to be
+passed in as percentages; the plugin will calculate the total and per-slice
+percentages internally.
+
+* Created by Brian Medendorp
+
+* Updated with contributions from btburnett3, Anthony Aragues and Xavi Ivars
+
+The plugin supports these options:
+
+	series: {
+		pie: {
+			show: true/false
+			radius: 0-1 for percentage of fullsize, or a specified pixel length, or 'auto'
+			innerRadius: 0-1 for percentage of fullsize or a specified pixel length, for creating a donut effect
+			startAngle: 0-2 factor of PI used for starting angle (in radians) i.e 3/2 starts at the top, 0 and 2 have the same result
+			tilt: 0-1 for percentage to tilt the pie, where 1 is no tilt, and 0 is completely flat (nothing will show)
+			offset: {
+				top: integer value to move the pie up or down
+				left: integer value to move the pie left or right, or 'auto'
+			},
+			stroke: {
+				color: any hexidecimal color value (other formats may or may not work, so best to stick with something like '#FFF')
+				width: integer pixel width of the stroke
+			},
+			label: {
+				show: true/false, or 'auto'
+				formatter:  a user-defined function that modifies the text/style of the label text
+				radius: 0-1 for percentage of fullsize, or a specified pixel length
+				background: {
+					color: any hexidecimal color value (other formats may or may not work, so best to stick with something like '#000')
+					opacity: 0-1
+				},
+				threshold: 0-1 for the percentage value at which to hide labels (if they're too small)
+			},
+			combine: {
+				threshold: 0-1 for the percentage value at which to combine slices (if they're too small)
+				color: any hexidecimal color value (other formats may or may not work, so best to stick with something like '#CCC'), if null, the plugin will automatically use the color of the first slice to be combined
+				label: any text value of what the combined slice should be labeled
+			}
+			highlight: {
+				opacity: 0-1
+			}
+		}
+	}
+
+More detail and specific examples can be found in the included HTML file.
+
+*/
+
+(function($) {
+
+	// Maximum redraw attempts when fitting labels within the plot
+
+	var REDRAW_ATTEMPTS = 10;
+
+	// Factor by which to shrink the pie when fitting labels within the plot
+
+	var REDRAW_SHRINK = 0.95;
+
+	function init(plot) {
+
+		var canvas = null,
+			target = null,
+			maxRadius = null,
+			centerLeft = null,
+			centerTop = null,
+			processed = false,
+			ctx = null;
+
+		// interactive variables
+
+		var highlights = [];
+
+		// add hook to determine if pie plugin in enabled, and then perform necessary operations
+
+		plot.hooks.processOptions.push(function(plot, options) {
+			if (options.series.pie.show) {
+
+				options.grid.show = false;
+
+				// set labels.show
+
+				if (options.series.pie.label.show == "auto") {
+					if (options.legend.show) {
+						options.series.pie.label.show = false;
+					} else {
+						options.series.pie.label.show = true;
+					}
+				}
+
+				// set radius
+
+				if (options.series.pie.radius == "auto") {
+					if (options.series.pie.label.show) {
+						options.series.pie.radius = 3/4;
+					} else {
+						options.series.pie.radius = 1;
+					}
+				}
+
+				// ensure sane tilt
+
+				if (options.series.pie.tilt > 1) {
+					options.series.pie.tilt = 1;
+				} else if (options.series.pie.tilt < 0) {
+					options.series.pie.tilt = 0;
+				}
+			}
+		});
+
+		plot.hooks.bindEvents.push(function(plot, eventHolder) {
+			var options = plot.getOptions();
+			if (options.series.pie.show) {
+				if (options.grid.hoverable) {
+					eventHolder.unbind("mousemove").mousemove(onMouseMove);
+				}
+				if (options.grid.clickable) {
+					eventHolder.unbind("click").click(onClick);
+				}
+			}
+		});
+
+		plot.hooks.processDatapoints.push(function(plot, series, data, datapoints) {
+			var options = plot.getOptions();
+			if (options.series.pie.show) {
+				processDatapoints(plot, series, data, datapoints);
+			}
+		});
+
+		plot.hooks.drawOverlay.push(function(plot, octx) {
+			var options = plot.getOptions();
+			if (options.series.pie.show) {
+				drawOverlay(plot, octx);
+			}
+		});
+
+		plot.hooks.draw.push(function(plot, newCtx) {
+			var options = plot.getOptions();
+			if (options.series.pie.show) {
+				draw(plot, newCtx);
+			}
+		});
+
+		function processDatapoints(plot, series, datapoints) {
+			if (!processed)	{
+				processed = true;
+				canvas = plot.getCanvas();
+				target = $(canvas).parent();
+				options = plot.getOptions();
+				plot.setData(combine(plot.getData()));
+			}
+		}
+
+		function combine(data) {
+
+			var total = 0,
+				combined = 0,
+				numCombined = 0,
+				color = options.series.pie.combine.color,
+				newdata = [];
+
+			// Fix up the raw data from Flot, ensuring the data is numeric
+
+			for (var i = 0; i < data.length; ++i) {
+
+				var value = data[i].data;
+
+				// If the data is an array, we'll assume that it's a standard
+				// Flot x-y pair, and are concerned only with the second value.
+
+				// Note how we use the original array, rather than creating a
+				// new one; this is more efficient and preserves any extra data
+				// that the user may have stored in higher indexes.
+
+				if ($.isArray(value) && value.length == 1) {
+    				value = value[0];
+				}
+
+				if ($.isArray(value)) {
+					// Equivalent to $.isNumeric() but compatible with jQuery < 1.7
+					if (!isNaN(parseFloat(value[1])) && isFinite(value[1])) {
+						value[1] = +value[1];
+					} else {
+						value[1] = 0;
+					}
+				} else if (!isNaN(parseFloat(value)) && isFinite(value)) {
+					value = [1, +value];
+				} else {
+					value = [1, 0];
+				}
+
+				data[i].data = [value];
+			}
+
+			// Sum up all the slices, so we can calculate percentages for each
+
+			for (var i = 0; i < data.length; ++i) {
+				total += data[i].data[0][1];
+			}
+
+			// Count the number of slices with percentages below the combine
+			// threshold; if it turns out to be just one, we won't combine.
+
+			for (var i = 0; i < data.length; ++i) {
+				var value = data[i].data[0][1];
+				if (value / total <= options.series.pie.combine.threshold) {
+					combined += value;
+					numCombined++;
+					if (!color) {
+						color = data[i].color;
+					}
+				}
+			}
+
+			for (var i = 0; i < data.length; ++i) {
+				var value = data[i].data[0][1];
+				if (numCombined < 2 || value / total > options.series.pie.combine.threshold) {
+					newdata.push({
+						data: [[1, value]],
+						color: data[i].color,
+						label: data[i].label,
+						angle: value * Math.PI * 2 / total,
+						percent: value / (total / 100)
+					});
+				}
+			}
+
+			if (numCombined > 1) {
+				newdata.push({
+					data: [[1, combined]],
+					color: color,
+					label: options.series.pie.combine.label,
+					angle: combined * Math.PI * 2 / total,
+					percent: combined / (total / 100)
+				});
+			}
+
+			return newdata;
+		}
+
+		function draw(plot, newCtx) {
+
+			if (!target) {
+				return; // if no series were passed
+			}
+
+			var canvasWidth = plot.getPlaceholder().width(),
+				canvasHeight = plot.getPlaceholder().height(),
+				legendWidth = target.children().filter(".legend").children().width() || 0;
+
+			ctx = newCtx;
+
+			// WARNING: HACK! REWRITE THIS CODE AS SOON AS POSSIBLE!
+
+			// When combining smaller slices into an 'other' slice, we need to
+			// add a new series.  Since Flot gives plugins no way to modify the
+			// list of series, the pie plugin uses a hack where the first call
+			// to processDatapoints results in a call to setData with the new
+			// list of series, then subsequent processDatapoints do nothing.
+
+			// The plugin-global 'processed' flag is used to control this hack;
+			// it starts out false, and is set to true after the first call to
+			// processDatapoints.
+
+			// Unfortunately this turns future setData calls into no-ops; they
+			// call processDatapoints, the flag is true, and nothing happens.
+
+			// To fix this we'll set the flag back to false here in draw, when
+			// all series have been processed, so the next sequence of calls to
+			// processDatapoints once again starts out with a slice-combine.
+			// This is really a hack; in 0.9 we need to give plugins a proper
+			// way to modify series before any processing begins.
+
+			processed = false;
+
+			// calculate maximum radius and center point
+
+			maxRadius =  Math.min(canvasWidth, canvasHeight / options.series.pie.tilt) / 2;
+			centerTop = canvasHeight / 2 + options.series.pie.offset.top;
+			centerLeft = canvasWidth / 2;
+
+			if (options.series.pie.offset.left == "auto") {
+				if (options.legend.position.match("w")) {
+					centerLeft += legendWidth / 2;
+				} else {
+					centerLeft -= legendWidth / 2;
+				}
+			} else {
+				centerLeft += options.series.pie.offset.left;
+			}
+
+			if (centerLeft < maxRadius) {
+				centerLeft = maxRadius;
+			} else if (centerLeft > canvasWidth - maxRadius) {
+				centerLeft = canvasWidth - maxRadius;
+			}
+
+			var slices = plot.getData(),
+				attempts = 0;
+
+			// Keep shrinking the pie's radius until drawPie returns true,
+			// indicating that all the labels fit, or we try too many times.
+
+			do {
+				if (attempts > 0) {
+					maxRadius *= REDRAW_SHRINK;
+				}
+				attempts += 1;
+				clear();
+				if (options.series.pie.tilt <= 0.8) {
+					drawShadow();
+				}
+			} while (!drawPie() && attempts < REDRAW_ATTEMPTS)
+
+			if (attempts >= REDRAW_ATTEMPTS) {
+				clear();
+				target.prepend("<div class='error'>Could not draw pie with labels contained inside canvas</div>");
+			}
+
+			if (plot.setSeries && plot.insertLegend) {
+				plot.setSeries(slices);
+				plot.insertLegend();
+			}
+
+			// we're actually done at this point, just defining internal functions at this point
+
+			function clear() {
+				ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+				target.children().filter(".pieLabel, .pieLabelBackground").remove();
+			}
+
+			function drawShadow() {
+
+				var shadowLeft = options.series.pie.shadow.left;
+				var shadowTop = options.series.pie.shadow.top;
+				var edge = 10;
+				var alpha = options.series.pie.shadow.alpha;
+				var radius = options.series.pie.radius > 1 ? options.series.pie.radius : maxRadius * options.series.pie.radius;
+
+				if (radius >= canvasWidth / 2 - shadowLeft || radius * options.series.pie.tilt >= canvasHeight / 2 - shadowTop || radius <= edge) {
+					return;	// shadow would be outside canvas, so don't draw it
+				}
+
+				ctx.save();
+				ctx.translate(shadowLeft,shadowTop);
+				ctx.globalAlpha = alpha;
+				ctx.fillStyle = "#000";
+
+				// center and rotate to starting position
+
+				ctx.translate(centerLeft,centerTop);
+				ctx.scale(1, options.series.pie.tilt);
+
+				//radius -= edge;
+
+				for (var i = 1; i <= edge; i++) {
+					ctx.beginPath();
+					ctx.arc(0, 0, radius, 0, Math.PI * 2, false);
+					ctx.fill();
+					radius -= i;
+				}
+
+				ctx.restore();
+			}
+
+			function drawPie() {
+
+				var startAngle = Math.PI * options.series.pie.startAngle;
+				var radius = options.series.pie.radius > 1 ? options.series.pie.radius : maxRadius * options.series.pie.radius;
+
+				// center and rotate to starting position
+
+				ctx.save();
+				ctx.translate(centerLeft,centerTop);
+				ctx.scale(1, options.series.pie.tilt);
+				//ctx.rotate(startAngle); // start at top; -- This doesn't work properly in Opera
+
+				// draw slices
+
+				ctx.save();
+				var currentAngle = startAngle;
+				for (var i = 0; i < slices.length; ++i) {
+					slices[i].startAngle = currentAngle;
+					drawSlice(slices[i].angle, slices[i].color, true);
+				}
+				ctx.restore();
+
+				// draw slice outlines
+
+				if (options.series.pie.stroke.width > 0) {
+					ctx.save();
+					ctx.lineWidth = options.series.pie.stroke.width;
+					currentAngle = startAngle;
+					for (var i = 0; i < slices.length; ++i) {
+						drawSlice(slices[i].angle, options.series.pie.stroke.color, false);
+					}
+					ctx.restore();
+				}
+
+				// draw donut hole
+
+				drawDonutHole(ctx);
+
+				ctx.restore();
+
+				// Draw the labels, returning true if they fit within the plot
+
+				if (options.series.pie.label.show) {
+					return drawLabels();
+				} else return true;
+
+				function drawSlice(angle, color, fill) {
+
+					if (angle <= 0 || isNaN(angle)) {
+						return;
+					}
+
+					if (fill) {
+						ctx.fillStyle = color;
+					} else {
+						ctx.strokeStyle = color;
+						ctx.lineJoin = "round";
+					}
+
+					ctx.beginPath();
+					if (Math.abs(angle - Math.PI * 2) > 0.000000001) {
+						ctx.moveTo(0, 0); // Center of the pie
+					}
+
+					//ctx.arc(0, 0, radius, 0, angle, false); // This doesn't work properly in Opera
+					ctx.arc(0, 0, radius,currentAngle, currentAngle + angle / 2, false);
+					ctx.arc(0, 0, radius,currentAngle + angle / 2, currentAngle + angle, false);
+					ctx.closePath();
+					//ctx.rotate(angle); // This doesn't work properly in Opera
+					currentAngle += angle;
+
+					if (fill) {
+						ctx.fill();
+					} else {
+						ctx.stroke();
+					}
+				}
+
+				function drawLabels() {
+
+					var currentAngle = startAngle;
+					var radius = options.series.pie.label.radius > 1 ? options.series.pie.label.radius : maxRadius * options.series.pie.label.radius;
+
+					for (var i = 0; i < slices.length; ++i) {
+						if (slices[i].percent >= options.series.pie.label.threshold * 100) {
+							if (!drawLabel(slices[i], currentAngle, i)) {
+								return false;
+							}
+						}
+						currentAngle += slices[i].angle;
+					}
+
+					return true;
+
+					function drawLabel(slice, startAngle, index) {
+
+						if (slice.data[0][1] == 0) {
+							return true;
+						}
+
+						// format label text
+
+						var lf = options.legend.labelFormatter, text, plf = options.series.pie.label.formatter;
+
+						if (lf) {
+							text = lf(slice.label, slice);
+						} else {
+							text = slice.label;
+						}
+
+						if (plf) {
+							text = plf(text, slice);
+						}
+
+						var halfAngle = ((startAngle + slice.angle) + startAngle) / 2;
+						var x = centerLeft + Math.round(Math.cos(halfAngle) * radius);
+						var y = centerTop + Math.round(Math.sin(halfAngle) * radius) * options.series.pie.tilt;
+
+						var html = "<span class='pieLabel' id='pieLabel" + index + "' style='position:absolute;top:" + y + "px;left:" + x + "px;'>" + text + "</span>";
+						target.append(html);
+
+						var label = target.children("#pieLabel" + index);
+						var labelTop = (y - label.height() / 2);
+						var labelLeft = (x - label.width() / 2);
+
+						label.css("top", labelTop);
+						label.css("left", labelLeft);
+
+						// check to make sure that the label is not outside the canvas
+
+						if (0 - labelTop > 0 || 0 - labelLeft > 0 || canvasHeight - (labelTop + label.height()) < 0 || canvasWidth - (labelLeft + label.width()) < 0) {
+							return false;
+						}
+
+						if (options.series.pie.label.background.opacity != 0) {
+
+							// put in the transparent background separately to avoid blended labels and label boxes
+
+							var c = options.series.pie.label.background.color;
+
+							if (c == null) {
+								c = slice.color;
+							}
+
+							var pos = "top:" + labelTop + "px;left:" + labelLeft + "px;";
+							$("<div class='pieLabelBackground' style='position:absolute;width:" + label.width() + "px;height:" + label.height() + "px;" + pos + "background-color:" + c + ";'></div>")
+								.css("opacity", options.series.pie.label.background.opacity)
+								.insertBefore(label);
+						}
+
+						return true;
+					} // end individual label function
+				} // end drawLabels function
+			} // end drawPie function
+		} // end draw function
+
+		// Placed here because it needs to be accessed from multiple locations
+
+		function drawDonutHole(layer) {
+			if (options.series.pie.innerRadius > 0) {
+
+				// subtract the center
+
+				layer.save();
+				var innerRadius = options.series.pie.innerRadius > 1 ? options.series.pie.innerRadius : maxRadius * options.series.pie.innerRadius;
+				layer.globalCompositeOperation = "destination-out"; // this does not work with excanvas, but it will fall back to using the stroke color
+				layer.beginPath();
+				layer.fillStyle = options.series.pie.stroke.color;
+				layer.arc(0, 0, innerRadius, 0, Math.PI * 2, false);
+				layer.fill();
+				layer.closePath();
+				layer.restore();
+
+				// add inner stroke
+
+				layer.save();
+				layer.beginPath();
+				layer.strokeStyle = options.series.pie.stroke.color;
+				layer.arc(0, 0, innerRadius, 0, Math.PI * 2, false);
+				layer.stroke();
+				layer.closePath();
+				layer.restore();
+
+				// TODO: add extra shadow inside hole (with a mask) if the pie is tilted.
+			}
+		}
+
+		//-- Additional Interactive related functions --
+
+		function isPointInPoly(poly, pt) {
+			for(var c = false, i = -1, l = poly.length, j = l - 1; ++i < l; j = i)
+				((poly[i][1] <= pt[1] && pt[1] < poly[j][1]) || (poly[j][1] <= pt[1] && pt[1]< poly[i][1]))
+				&& (pt[0] < (poly[j][0] - poly[i][0]) * (pt[1] - poly[i][1]) / (poly[j][1] - poly[i][1]) + poly[i][0])
+				&& (c = !c);
+			return c;
+		}
+
+		function findNearbySlice(mouseX, mouseY) {
+
+			var slices = plot.getData(),
+				options = plot.getOptions(),
+				radius = options.series.pie.radius > 1 ? options.series.pie.radius : maxRadius * options.series.pie.radius,
+				x, y;
+
+			for (var i = 0; i < slices.length; ++i) {
+
+				var s = slices[i];
+
+				if (s.pie.show) {
+
+					ctx.save();
+					ctx.beginPath();
+					ctx.moveTo(0, 0); // Center of the pie
+					//ctx.scale(1, options.series.pie.tilt);	// this actually seems to break everything when here.
+					ctx.arc(0, 0, radius, s.startAngle, s.startAngle + s.angle / 2, false);
+					ctx.arc(0, 0, radius, s.startAngle + s.angle / 2, s.startAngle + s.angle, false);
+					ctx.closePath();
+					x = mouseX - centerLeft;
+					y = mouseY - centerTop;
+
+					if (ctx.isPointInPath) {
+						if (ctx.isPointInPath(mouseX - centerLeft, mouseY - centerTop)) {
+							ctx.restore();
+							return {
+								datapoint: [s.percent, s.data],
+								dataIndex: 0,
+								series: s,
+								seriesIndex: i
+							};
+						}
+					} else {
+
+						// excanvas for IE doesn;t support isPointInPath, this is a workaround.
+
+						var p1X = radius * Math.cos(s.startAngle),
+							p1Y = radius * Math.sin(s.startAngle),
+							p2X = radius * Math.cos(s.startAngle + s.angle / 4),
+							p2Y = radius * Math.sin(s.startAngle + s.angle / 4),
+							p3X = radius * Math.cos(s.startAngle + s.angle / 2),
+							p3Y = radius * Math.sin(s.startAngle + s.angle / 2),
+							p4X = radius * Math.cos(s.startAngle + s.angle / 1.5),
+							p4Y = radius * Math.sin(s.startAngle + s.angle / 1.5),
+							p5X = radius * Math.cos(s.startAngle + s.angle),
+							p5Y = radius * Math.sin(s.startAngle + s.angle),
+							arrPoly = [[0, 0], [p1X, p1Y], [p2X, p2Y], [p3X, p3Y], [p4X, p4Y], [p5X, p5Y]],
+							arrPoint = [x, y];
+
+						// TODO: perhaps do some mathmatical trickery here with the Y-coordinate to compensate for pie tilt?
+
+						if (isPointInPoly(arrPoly, arrPoint)) {
+							ctx.restore();
+							return {
+								datapoint: [s.percent, s.data],
+								dataIndex: 0,
+								series: s,
+								seriesIndex: i
+							};
+						}
+					}
+
+					ctx.restore();
+				}
+			}
+
+			return null;
+		}
+
+		function onMouseMove(e) {
+			triggerClickHoverEvent("plothover", e);
+		}
+
+		function onClick(e) {
+			triggerClickHoverEvent("plotclick", e);
+		}
+
+		// trigger click or hover event (they send the same parameters so we share their code)
+
+		function triggerClickHoverEvent(eventname, e) {
+
+			var offset = plot.offset();
+			var canvasX = parseInt(e.pageX - offset.left);
+			var canvasY =  parseInt(e.pageY - offset.top);
+			var item = findNearbySlice(canvasX, canvasY);
+
+			if (options.grid.autoHighlight) {
+
+				// clear auto-highlights
+
+				for (var i = 0; i < highlights.length; ++i) {
+					var h = highlights[i];
+					if (h.auto == eventname && !(item && h.series == item.series)) {
+						unhighlight(h.series);
+					}
+				}
+			}
+
+			// highlight the slice
+
+			if (item) {
+				highlight(item.series, eventname);
+			}
+
+			// trigger any hover bind events
+
+			var pos = { pageX: e.pageX, pageY: e.pageY };
+			target.trigger(eventname, [pos, item]);
+		}
+
+		function highlight(s, auto) {
+			//if (typeof s == "number") {
+			//	s = series[s];
+			//}
+
+			var i = indexOfHighlight(s);
+
+			if (i == -1) {
+				highlights.push({ series: s, auto: auto });
+				plot.triggerRedrawOverlay();
+			} else if (!auto) {
+				highlights[i].auto = false;
+			}
+		}
+
+		function unhighlight(s) {
+			if (s == null) {
+				highlights = [];
+				plot.triggerRedrawOverlay();
+			}
+
+			//if (typeof s == "number") {
+			//	s = series[s];
+			//}
+
+			var i = indexOfHighlight(s);
+
+			if (i != -1) {
+				highlights.splice(i, 1);
+				plot.triggerRedrawOverlay();
+			}
+		}
+
+		function indexOfHighlight(s) {
+			for (var i = 0; i < highlights.length; ++i) {
+				var h = highlights[i];
+				if (h.series == s)
+					return i;
+			}
+			return -1;
+		}
+
+		function drawOverlay(plot, octx) {
+
+			var options = plot.getOptions();
+
+			var radius = options.series.pie.radius > 1 ? options.series.pie.radius : maxRadius * options.series.pie.radius;
+
+			octx.save();
+			octx.translate(centerLeft, centerTop);
+			octx.scale(1, options.series.pie.tilt);
+
+			for (var i = 0; i < highlights.length; ++i) {
+				drawHighlight(highlights[i].series);
+			}
+
+			drawDonutHole(octx);
+
+			octx.restore();
+
+			function drawHighlight(series) {
+
+				if (series.angle <= 0 || isNaN(series.angle)) {
+					return;
+				}
+
+				//octx.fillStyle = parseColor(options.series.pie.highlight.color).scale(null, null, null, options.series.pie.highlight.opacity).toString();
+				octx.fillStyle = "rgba(255, 255, 255, " + options.series.pie.highlight.opacity + ")"; // this is temporary until we have access to parseColor
+				octx.beginPath();
+				if (Math.abs(series.angle - Math.PI * 2) > 0.000000001) {
+					octx.moveTo(0, 0); // Center of the pie
+				}
+				octx.arc(0, 0, radius, series.startAngle, series.startAngle + series.angle / 2, false);
+				octx.arc(0, 0, radius, series.startAngle + series.angle / 2, series.startAngle + series.angle, false);
+				octx.closePath();
+				octx.fill();
+			}
+		}
+	} // end init (plugin body)
+
+	// define pie specific options and their default values
+
+	var options = {
+		series: {
+			pie: {
+				show: false,
+				radius: "auto",	// actual radius of the visible pie (based on full calculated radius if <=1, or hard pixel value)
+				innerRadius: 0, /* for donut */
+				startAngle: 3/2,
+				tilt: 1,
+				shadow: {
+					left: 5,	// shadow left offset
+					top: 15,	// shadow top offset
+					alpha: 0.02	// shadow alpha
+				},
+				offset: {
+					top: 0,
+					left: "auto"
+				},
+				stroke: {
+					color: "#fff",
+					width: 1
+				},
+				label: {
+					show: "auto",
+					formatter: function(label, slice) {
+						return "<div style='font-size:x-small;text-align:center;padding:2px;color:" + slice.color + ";'>" + label + "<br/>" + Math.round(slice.percent) + "%</div>";
+					},	// formatter function
+					radius: 1,	// radius at which to place the labels (based on full calculated radius if <=1, or hard pixel value)
+					background: {
+						color: null,
+						opacity: 0
+					},
+					threshold: 0	// percentage at which to hide the label (i.e. the slice is too narrow)
+				},
+				combine: {
+					threshold: -1,	// percentage at which to combine little slices into one larger slice
+					color: null,	// color to give the new slice (auto-generated if null)
+					label: "Other"	// label to give the new slice
+				},
+				highlight: {
+					//color: "#fff",		// will add this functionality once parseColor is available
+					opacity: 0.5
+				}
+			}
+		}
+	};
+
+	$.plot.plugins.push({
+		init: init,
+		options: options,
+		name: "pie",
+		version: "1.1"
+	});
+
+})(jQuery);

@@ -1,0 +1,4 @@
+/*! grafana - v2.6.0 - 2015-12-14
+ * Copyright (c) 2015 Torkel Ödegaard; Licensed Apache-2.0 */
+
+define(["angular"],function(a){"use strict";var b=a.module("grafana.controllers");b.controller("SubmenuCtrl",["$scope","$q","$rootScope","templateValuesSrv","dynamicDashboardSrv",function(a,b,c,d,e){a.init=function(){a.panel=a.pulldown,a.row=a.pulldown,a.annotations=a.dashboard.templating.list,a.variables=a.dashboard.templating.list},a.disableAnnotation=function(a){a.enable=!a.enable,c.$broadcast("refresh")},a.getValuesForTag=function(a,b){return d.getValuesForTag(a,b)},a.variableUpdated=function(b){d.variableUpdated(b).then(function(){e.update(a.dashboard),c.$emit("template-variable-value-updated"),c.$broadcast("refresh")})},a.init()}])});

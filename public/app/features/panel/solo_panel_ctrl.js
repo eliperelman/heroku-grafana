@@ -1,0 +1,4 @@
+/*! grafana - v2.6.0 - 2015-12-14
+ * Copyright (c) 2015 Torkel Ödegaard; Licensed Apache-2.0 */
+
+define(["angular","jquery"],function(a,b){"use strict";var c=a.module("grafana.routes");c.controller("SoloPanelCtrl",["$scope","$routeParams","$location","dashboardLoaderSrv","contextSrv",function(a,c,d,e,f){var g;a.init=function(){f.sidemenu=!1;var b=d.search();g=parseInt(b.panelId),e.loadDashboard(c.type,c.slug).then(function(b){a.initDashboard(b,a)}),a.onAppEvent("dashboard-loaded",a.initPanelScope)},a.initPanelScope=function(){return a.row={height:b(window).height()+"px"},a.test="Hej",a.$index=0,a.panel=a.dashboard.getPanelById(g),a.panel?(a.panel.span=12,void(a.dashboardViewState={registerPanel:function(){},state:{}})):void a.appEvent("alert-error",["Panel not found",""])},a.skipAutoInit||a.init()}])});

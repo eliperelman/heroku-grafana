@@ -1,0 +1,4 @@
+/*! grafana - v2.6.0 - 2015-12-14
+ * Copyright (c) 2015 Torkel Ödegaard; Licensed Apache-2.0 */
+
+define(["jquery","lodash","../core_module"],function(a,b,c){"use strict";c.directive("annotationTooltip",["$sanitize","dashboardSrv","$compile",function(c,d,e){function f(a){try{return c(a)}catch(d){return console.log("Could not sanitize annotation string, html escaping instead"),b.escape(a)}}return{link:function(c,g){var h=c.event,i=f(h.title),j=d.getCurrent(),k="<i>"+j.formatDate(h.min)+"</i>",l='<div class="graph-tooltip small"><div class="graph-tooltip-time">'+i+" "+k+"</div> ";if(h.text){var m=f(h.text);l+=m.replace(/\n/g,"<br>")+"<br>"}var n=h.tags;b.isString(h.tags)&&(n=h.tags.split(","),1===n.length&&(n=h.tags.split(" "))),n&&n.length&&(c.tags=n,l+='<span class="label label-tag" ng-repeat="tag in tags" tag-color-from-name="tag">{{tag}}</span><br/>'),l+="</div>";var o=a(l);o.appendTo(g),e(g.contents())(c)}}}])});

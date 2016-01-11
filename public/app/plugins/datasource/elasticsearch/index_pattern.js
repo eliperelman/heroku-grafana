@@ -1,0 +1,4 @@
+/*! grafana - v2.6.0 - 2015-12-14
+ * Copyright (c) 2015 Torkel Ödegaard; Licensed Apache-2.0 */
+
+define(["lodash","moment"],function(a,b){"use strict";function c(a,b){this.pattern=a,this.interval=b}return c.intervalMap={Hours:{startOf:"hour",amount:"hours"},Daily:{startOf:"day",amount:"days"},Weekly:{startOf:"isoWeek",amount:"weeks"},Monthly:{startOf:"month",amount:"months"},Yearly:{startOf:"year",amount:"years"}},c.prototype.getIndexForToday=function(){return this.interval?b.utc().format(this.pattern):this.pattern},c.prototype.getIndexList=function(a,d){if(!this.interval)return this.pattern;for(var e=c.intervalMap[this.interval],f=b(a).utc().startOf(e.startOf),g=b(d).utc().startOf(e.startOf).valueOf(),h=[];g>=f;)h.push(f.format(this.pattern)),f.add(1,e.amount);return h},c});

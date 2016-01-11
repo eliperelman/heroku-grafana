@@ -14,7 +14,7 @@
  * call this function with the dashboard object
  */
 
-
+'use strict';
 
 // accessible variables in this scope
 var window, document, ARGS, $, jQuery, moment, kbn;

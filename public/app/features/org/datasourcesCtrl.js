@@ -1,0 +1,4 @@
+/*! grafana - v2.6.0 - 2015-12-14
+ * Copyright (c) 2015 Torkel Ödegaard; Licensed Apache-2.0 */
+
+define(["angular","lodash"],function(a){"use strict";var b=a.module("grafana.controllers");b.controller("DataSourcesCtrl",["$scope","$http","backendSrv","datasourceSrv",function(a,b,c,d){a.init=function(){a.datasources=[],a.getDatasources()},a.getDatasources=function(){c.get("/api/datasources").then(function(b){a.datasources=b})},a.remove=function(b){c["delete"]("/api/datasources/"+b.id).then(function(){a.getDatasources(),c.get("/api/frontend/settings").then(function(a){d.init(a.datasources)})})},a.init()}])});

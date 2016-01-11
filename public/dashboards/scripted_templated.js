@@ -11,7 +11,7 @@
  * call this callback function with the dashboard object (look at scripted_async.js for an example)
  */
 
-
+'use strict';
 
 // accessable variables in this scope
 var window, document, ARGS, $, jQuery, moment, kbn;

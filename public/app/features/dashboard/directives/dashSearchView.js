@@ -1,0 +1,4 @@
+/*! grafana - v2.6.0 - 2015-12-14
+ * Copyright (c) 2015 Torkel Ödegaard; Licensed Apache-2.0 */
+
+define(["angular","jquery"],function(a,b){"use strict";a.module("grafana.directives").directive("dashSearchView",["$compile","$timeout",function(a,c){return{restrict:"A",link:function(d,e){function f(){c(function(){b(document).bind("click.hide-search",function(a){0!==b(a.target).parents().length&&0===b(a.target).parents(".search-container").length&&i&&i.dismiss()})})}function g(){if(i)return void i.dismiss();i=d.$new(),i.dismiss=function(){i.$destroy(),e.empty(),e.unbind(),i=null,b(document).unbind("click.hide-search")};var c=b('<div class="search-container" ng-include="\'app/partials/search.html\'"></div>');e.append(c),a(e.contents())(i),f()}function h(){i&&i.dismiss()}var i;d.onAppEvent("show-dash-search",g),d.onAppEvent("hide-dash-search",h)}}}])});
