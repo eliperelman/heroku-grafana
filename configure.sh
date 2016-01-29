@@ -7,7 +7,7 @@ HEROKU_APP=$1
 # check $1 is valid
 if [ -z $HEROKU_APP ]; then
     echo "Invalid Heroku app name"
-    echo "Usage: ./deploy.sh [appname]"
+    echo "Usage: $0 [appname]"
     exit
 fi
 
