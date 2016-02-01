@@ -43,6 +43,12 @@ GF_DATABASE_PASSWORD=${BASH_REMATCH[2]}
 echo "Getting Postgres credentials"
 POSTGRES_CREDENTIALS=`heroku pg:credentials DATABASE -a $HEROKU_APP | grep dbname | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//'`
 
+if [[ ! $POSTGRES_CREDENTIALS =~ ^\"(.*)\"$ ]]; then
+    echo "POSTGRES_CREDENTIALS format unrecognised"
+    exit 1
+fi
+POSTGRES_CREDENTIALS=${BASH_REMATCH[1]}
+
 echo "Setting up session database"
 (\
     echo "\connect ${GF_DATABASE_NAME}"; \
