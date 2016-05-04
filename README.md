@@ -2,7 +2,19 @@
 
 Run Grafana on Heroku
 
-## Setup
+## Automated Install
+
+Heroku-Grafana provides an automatic deployment script which will perform all of the following steps for you.
+
+Should you wish to use this script, simply invoke it as follows:
+
+```./configure.sh <app name>
+```
+
+Otherwise, please follow these steps to manually deploy Heroku-Grafana.
+
+
+## Manual Install
 
 #### Init
 
