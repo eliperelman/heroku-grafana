@@ -8,7 +8,7 @@ Heroku-Grafana provides an automatic deployment script which will perform all of
 
 Should you wish to use this script, simply invoke it as follows:
 
-```./configure.sh <app name>
+```./deploy.sh <app name>
 ```
 
 Otherwise, please follow these steps to manually deploy Heroku-Grafana.
