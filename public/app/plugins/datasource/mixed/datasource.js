@@ -1,4 +1,4 @@
-/*! grafana - v2.6.0 - 2015-12-14
- * Copyright (c) 2015 Torkel Ödegaard; Licensed Apache-2.0 */
+/*! grafana - v3.1.1-1470047149 - 2016-08-01
+ * Copyright (c) 2016 Torkel Ödegaard; Licensed Apache-2.0 */
 
-define(["angular","lodash"],function(a,b){"use strict";var c=a.module("grafana.services");c.factory("MixedDatasource",["$q","backendSrv","datasourceSrv",function(c,d,e){function f(){}return f.prototype.query=function(d){var f=b.groupBy(d.targets,"datasource"),g=b.map(f,function(b){return e.get(b[0].datasource).then(function(c){var e=a.copy(d);return e.targets=b,c.query(e)})});return c.all(g).then(function(a){return{data:b.flatten(b.pluck(a,"data"))}})},f}])});
+System.register(["angular","lodash"],function(a){var b,c,d;return{setters:[function(a){b=a},function(a){c=a}],execute:function(){d=function(){function a(a,b){this.$q=a,this.datasourceSrv=b}return a.$inject=["$q","datasourceSrv"],a.prototype.query=function(a){var d=this,e=c["default"].groupBy(a.targets,"datasource"),f=c["default"].map(e,function(c){var e=c[0].datasource;return"-- Mixed --"===e?d.$q([]):d.datasourceSrv.get(e).then(function(d){var e=b["default"].copy(a);return e.targets=c,d.query(e)})});return this.$q.all(f).then(function(a){return{data:c["default"].flatten(c["default"].pluck(a,"data"))}})},a}(),a("MixedDatasource",d),a("Datasource",d)}}});

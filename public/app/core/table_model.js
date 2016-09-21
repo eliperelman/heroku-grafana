@@ -1,4 +1,4 @@
-/*! grafana - v2.6.0 - 2015-12-14
- * Copyright (c) 2015 Torkel Ödegaard; Licensed Apache-2.0 */
+/*! grafana - v3.1.1-1470047149 - 2016-08-01
+ * Copyright (c) 2016 Torkel Ödegaard; Licensed Apache-2.0 */
 
-define(["require","exports"],function(){var a=function(){function a(){this.columns=[],this.rows=[],this.type="table"}return a.prototype.sort=function(a){null===a.col||this.columns.length<=a.col||(this.rows.sort(function(b,c){return b=b[a.col],c=c[a.col],c>b?-1:b>c?1:0}),this.columns[a.col].sort=!0,a.desc&&(this.rows.reverse(),this.columns[a.col].desc=!0))},a}();return a});
+System.register([],function(a){var b;return{setters:[],execute:function(){b=function(){function a(){this.columns=[],this.rows=[],this.type="table"}return a.prototype.sort=function(a){null===a.col||this.columns.length<=a.col||(this.rows.sort(function(b,c){return b=b[a.col],c=c[a.col],b<c?-1:b>c?1:0}),this.columns[a.col].sort=!0,a.desc?(this.rows.reverse(),this.columns[a.col].desc=!0):this.columns[a.col].desc=!1)},a}(),a("default",b)}}});

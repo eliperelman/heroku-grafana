@@ -1,4 +1,4 @@
-/*! grafana - v2.6.0 - 2015-12-14
- * Copyright (c) 2015 Torkel Ödegaard; Licensed Apache-2.0 */
+/*! grafana - v3.1.1-1470047149 - 2016-08-01
+ * Copyright (c) 2016 Torkel Ödegaard; Licensed Apache-2.0 */
 
-define(["require","exports","angular"],function(a,b,c){return c.module("grafana.core",["ngRoute"])});
+System.register(["angular"],function(a){var b;return{setters:[function(a){b=a}],execute:function(){a("default",b["default"].module("grafana.core",["ngRoute"]))}}});

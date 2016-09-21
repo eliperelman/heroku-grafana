@@ -1,10 +1,13 @@
 /// <reference path="../../../../../public/app/headers/common.d.ts" />
-declare class InfluxQuery {
+export default class InfluxQuery {
     target: any;
     selectModels: any[];
-    groupByParts: any;
     queryBuilder: any;
-    constructor(target: any);
+    groupByParts: any;
+    templateSrv: any;
+    scopedVars: any;
+    /** @ngInject */
+    constructor(target: any, templateSrv?: any, scopedVars?: any);
     updateProjection(): void;
     updatePersistedParts(): void;
     hasGroupByTime(): any;
@@ -14,7 +17,7 @@ declare class InfluxQuery {
     removeSelect(index: number): void;
     removeSelectPart(selectParts: any, part: any): void;
     addSelectPart(selectParts: any, type: any): void;
-    private renderTagCondition(tag, index);
-    render(): any;
+    private renderTagCondition(tag, index, interpolate);
+    getMeasurementAndPolicy(interpolate: any): any;
+    render(interpolate?: any): any;
 }
-export = InfluxQuery;

@@ -1,4 +1,4 @@
-/*! grafana - v2.6.0 - 2015-12-14
- * Copyright (c) 2015 Torkel Ödegaard; Licensed Apache-2.0 */
+/*! grafana - v3.1.1-1470047149 - 2016-08-01
+ * Copyright (c) 2016 Torkel Ödegaard; Licensed Apache-2.0 */
 
-define(["./dashboardCtrl","./dashboardLoaderSrv","./dashboardNavCtrl","./snapshotTopNavCtrl","./saveDashboardAsCtrl","./playlistCtrl","./rowCtrl","./shareModalCtrl","./shareSnapshotCtrl","./submenuCtrl","./dashboardSrv","./keybindings","./viewStateSrv","./playlistSrv","./timeSrv","./unsavedChangesSrv","./directives/dashSearchView","./timepicker/timepicker","./graphiteImportCtrl","./dynamicDashboardSrv","./importCtrl"],function(){});
+define(["./dashboard_ctrl","./dashboardLoaderSrv","./dashnav/dashnav","./submenu/submenu","./saveDashboardAsCtrl","./rowCtrl","./shareModalCtrl","./shareSnapshotCtrl","./dashboardSrv","./keybindings","./viewStateSrv","./timeSrv","./unsavedChangesSrv","./timepicker/timepicker","./graphiteImportCtrl","./importCtrl","./impression_store","./upload","./import/dash_import","./export/export_modal","./dash_list_ctrl"],function(){});
