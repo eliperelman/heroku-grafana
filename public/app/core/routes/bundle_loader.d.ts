@@ -1,4 +1,4 @@
-/// <reference path="../../../../public/app/headers/require/require.d.ts" />
+/// <reference path="../../../../public/app/headers/common.d.ts" />
 export declare class BundleLoader {
     lazy: any;
     loadingDefer: any;

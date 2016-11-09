@@ -18,14 +18,16 @@ export declare class TimePickerCtrl {
     refresh: any;
     isOpen: boolean;
     isUtc: boolean;
+    /** @ngInject */
     constructor($scope: any, $rootScope: any, timeSrv: any);
     init(): void;
     zoom(factor: any): void;
+    move(direction: any): void;
     openDropdown(): void;
     applyCustom(): void;
     absoluteFromChanged(): void;
     absoluteToChanged(): void;
-    getAbsoluteMomentForTimezone(jsDate: any): moment.Moment;
+    getAbsoluteMomentForTimezone(jsDate: any): any;
     setRelativeFilter(timespan: any): void;
 }
 export declare function settingsDirective(): {

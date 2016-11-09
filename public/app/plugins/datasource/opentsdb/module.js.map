@@ -1,0 +1,1 @@
+{"version":3,"file":"module.js","sourceRoot":"","sources":["../../../../../public/app/plugins/datasource/opentsdb/module.ts"],"names":["AnnotationsQueryCtrl","AnnotationsQueryCtrl.constructor"],"mappings":";;;;;;;;;;;;;;;YAIA;gBAAAA;gBAEAC,CAACA;gBADQD,gCAAWA,GAAGA,kCAAkCA,CAACA;gBAC1DA,2BAACA;YAADA,CAACA,AAFD,IAEC;YAGqB,sDAAU;YACX,oDAAS;YACR,uDAAU;YACN,uDAAoB"}

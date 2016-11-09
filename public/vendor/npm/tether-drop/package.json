@@ -1,0 +1,88 @@
+{
+  "_args": [
+    [
+      "tether-drop@^1.4.2",
+      "/go/src/github.com/grafana/grafana"
+    ]
+  ],
+  "_from": "tether-drop@>=1.4.2 <2.0.0",
+  "_id": "tether-drop@1.4.2",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/tether-drop",
+  "_npmUser": {
+    "email": "devteam@hubspot.com",
+    "name": "hs"
+  },
+  "_npmVersion": "1.4.28",
+  "_phantomChildren": {},
+  "_requested": {
+    "name": "tether-drop",
+    "raw": "tether-drop@^1.4.2",
+    "rawSpec": "^1.4.2",
+    "scope": null,
+    "spec": ">=1.4.2 <2.0.0",
+    "type": "range"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/tether-drop/-/tether-drop-1.4.2.tgz",
+  "_shasum": "28e240cce077f4ae1d8e5990a03b71e0cd6fbfec",
+  "_shrinkwrap": null,
+  "_spec": "tether-drop@^1.4.2",
+  "_where": "/go/src/github.com/grafana/grafana",
+  "authors": [
+    "Zack Bloom <zackbloom@gmail.com>",
+    "Adam Schwartz <adam.flynn.schwartz@gmail.com>"
+  ],
+  "bugs": {
+    "url": "https://github.com/HubSpot/drop/issues"
+  },
+  "dependencies": {
+    "tether": "^1.1.0"
+  },
+  "description": "Client-side library for creating dropdowns",
+  "devDependencies": {
+    "bower": "^1.4.1",
+    "del": "^1.1.1",
+    "eslint": "^1.7.3",
+    "gulp": "^3.9.0",
+    "gulp-autoprefixer": "^2.3.1",
+    "gulp-babel": "^5.1.0",
+    "gulp-bump": "^0.3.0",
+    "gulp-header": "^1.2.2",
+    "gulp-minify-css": "^1.1.6",
+    "gulp-plumber": "^1.0.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^2.0.1",
+    "gulp-uglify": "^1.2.0",
+    "gulp-wrap-umd": "^0.2.1"
+  },
+  "directories": {},
+  "dist": {
+    "shasum": "28e240cce077f4ae1d8e5990a03b71e0cd6fbfec",
+    "tarball": "https://registry.npmjs.org/tether-drop/-/tether-drop-1.4.2.tgz"
+  },
+  "gitHead": "c31d484fc200e9be6d8cc9cdc4ebb9b9acdc1d14",
+  "homepage": "https://github.com/HubSpot/drop",
+  "license": "MIT",
+  "main": "dist/js/drop.js",
+  "maintainers": [
+    {
+      "email": "devteam@hubspot.com",
+      "name": "hs"
+    }
+  ],
+  "name": "tether-drop",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HubSpot/drop.git"
+  },
+  "scripts": {
+    "build": "gulp build"
+  },
+  "version": "1.4.2"
+}

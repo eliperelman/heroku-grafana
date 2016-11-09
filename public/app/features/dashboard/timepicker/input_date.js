@@ -1,4 +1,4 @@
-/*! grafana - v2.6.0 - 2015-12-14
- * Copyright (c) 2015 Torkel Ödegaard; Licensed Apache-2.0 */
+/*! grafana - v3.1.1-1470047149 - 2016-08-01
+ * Copyright (c) 2016 Torkel Ödegaard; Licensed Apache-2.0 */
 
-define(["angular","lodash","moment"],function(a,b,c){"use strict";a.module("grafana.directives").directive("inputDatetime",function(){return{restrict:"A",require:"ngModel",link:function(a,b,d,e){var f="YYYY-MM-DD HH:mm:ss",g=function(b){if(-1!==b.indexOf("now"))return b;var d;return d=a.ctrl.isUtc?c.utc(b,f):c(b,f),d.isValid()?d:void 0},h=function(a){return c.isMoment(a)?a.format(f):a};e.$parsers.push(g),e.$formatters.push(h)}}})});
+System.register(["moment","app/core/utils/datemath"],function(a){function b(){return{restrict:"A",require:"ngModel",link:function(a,b,e,f){var g="YYYY-MM-DD HH:mm:ss",h=function(b){if(b.indexOf("now")!==-1)return d.isValid(b)?(f.$setValidity("error",!0),b):void f.$setValidity("error",!1);var e;return e=a.ctrl.isUtc?c["default"].utc(b,g):c["default"](b,g),e.isValid()?(f.$setValidity("error",!0),e):void f.$setValidity("error",!1)},i=function(a){return c["default"].isMoment(a)?a.format(g):a};f.$parsers.push(h),f.$formatters.push(i)}}}var c,d;return a("inputDateDirective",b),{setters:[function(a){c=a},function(a){d=a}],execute:function(){}}});

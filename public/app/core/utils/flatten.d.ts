@@ -1,2 +1,1 @@
-declare function flatten(target: any, opts: any): any;
-export = flatten;
+export default function flatten(target: any, opts: any): any;
