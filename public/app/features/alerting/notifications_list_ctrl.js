@@ -1,0 +1,4 @@
+/*! grafana - v4.0.0-1478693311beta1 - 2016-11-09
+ * Copyright (c) 2016 Torkel Ödegaard; Licensed Apache-2.0 */
+
+System.register(["../../core/core_module"],function(a){var b,c;return{setters:[function(a){b=a}],execute:function(){c=function(){function a(a,b){this.backendSrv=a,this.$scope=b,this.loadNotifications()}return a.$inject=["backendSrv","$scope"],a.prototype.loadNotifications=function(){var a=this;this.backendSrv.get("/api/alert-notifications").then(function(b){a.notifications=b})},a.prototype.deleteNotification=function(a){var b=this;this.backendSrv["delete"]("/api/alert-notifications/"+a).then(function(){b.notifications=b.notifications.filter(function(b){return b.id!==a})})},a}(),a("AlertNotificationsListCtrl",c),b["default"].controller("AlertNotificationsListCtrl",c)}}});

@@ -10,9 +10,10 @@ export declare class TextPanelCtrl extends PanelCtrl {
         mode: string;
         content: string;
     };
-    /** @ngInject */
+    /** @ngInject **/
     constructor($scope: any, $injector: any, templateSrv: any, $sce: any);
     onInitEditMode(): void;
+    onRefresh(): void;
     onRender(): void;
     renderText(content: any): void;
     renderMarkdown(content: any): any;

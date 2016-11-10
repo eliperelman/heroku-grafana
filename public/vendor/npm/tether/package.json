@@ -6,14 +6,14 @@
     ]
   ],
   "_from": "tether@>=1.2.0 <2.0.0",
-  "_id": "tether@1.3.3",
+  "_id": "tether@1.3.7",
   "_inCache": true,
   "_installable": true,
   "_location": "/tether",
   "_nodeVersion": "4.2.4",
   "_npmOperationalInternal": {
     "host": "packages-16-east.internal.npmjs.com",
-    "tmp": "tmp/tether-1.3.3.tgz_1468519293707_0.6348492382094264"
+    "tmp": "tmp/tether-1.3.7.tgz_1472833242502_0.4759219968691468"
   },
   "_npmUser": {
     "email": "devteam@hubspot.com",
@@ -33,8 +33,8 @@
     "/",
     "/tether-drop"
   ],
-  "_resolved": "https://registry.npmjs.org/tether/-/tether-1.3.3.tgz",
-  "_shasum": "67264b39dda9c7323b8fc2ff4d8ce5af536309f3",
+  "_resolved": "https://registry.npmjs.org/tether/-/tether-1.3.7.tgz",
+  "_shasum": "65578104741694f9672c808eae04a9adae7b0304",
   "_shrinkwrap": null,
   "_spec": "tether@^1.2.0",
   "_where": "/go/src/github.com/grafana/grafana",
@@ -65,10 +65,10 @@
   },
   "directories": {},
   "dist": {
-    "shasum": "67264b39dda9c7323b8fc2ff4d8ce5af536309f3",
-    "tarball": "https://registry.npmjs.org/tether/-/tether-1.3.3.tgz"
+    "shasum": "65578104741694f9672c808eae04a9adae7b0304",
+    "tarball": "https://registry.npmjs.org/tether/-/tether-1.3.7.tgz"
   },
-  "gitHead": "7e43e95331ddf6bf7d65a88bc1b9bfbee8492d23",
+  "gitHead": "7a7fcc0b4ec7b0e10b168b9e730c39bc018fb852",
   "homepage": "https://github.com/HubSpot/tether#readme",
   "license": "MIT",
   "main": "dist/js/tether.js",
@@ -98,5 +98,5 @@
     "reinstall": "del node_modules && npm install",
     "watch": "gulp watch"
   },
-  "version": "1.3.3"
+  "version": "1.3.7"
 }

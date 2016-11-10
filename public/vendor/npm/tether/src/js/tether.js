@@ -571,17 +571,17 @@ class TetherClass extends Evented {
         right: pageXOffset - left - width + innerWidth
       }
     };
-    
+
     var doc = this.target.ownerDocument;
     var win = doc.defaultView;
 
     let scrollbarSize;
-    if (doc.body.scrollWidth > win.innerWidth) {
+    if (win.innerHeight > doc.documentElement.clientHeight) {
       scrollbarSize = this.cache('scrollbar-size', getScrollBarSize);
       next.viewport.bottom -= scrollbarSize.height;
     }
 
-    if (doc.body.scrollHeight > win.innerHeight) {
+    if (win.innerWidth > doc.documentElement.clientWidth) {
       scrollbarSize = this.cache('scrollbar-size', getScrollBarSize);
       next.viewport.right -= scrollbarSize.width;
     }
@@ -697,7 +697,17 @@ class TetherClass extends Evented {
           xPos = -_pos.right;
         }
 
-        css[transformKey] = `translateX(${ Math.round(xPos) }px) translateY(${ Math.round(yPos) }px)`;
+        if (window.matchMedia) {
+          // HubSpot/tether#207
+          const retina = window.matchMedia('only screen and (min-resolution: 1.3dppx)').matches ||
+                         window.matchMedia('only screen and (-webkit-min-device-pixel-ratio: 1.3)').matches;
+          if (!retina) {
+            xPos = Math.round(xPos);
+            yPos = Math.round(yPos);
+          }
+        }
+
+        css[transformKey] = `translateX(${ xPos }px) translateY(${ yPos }px)`;
 
         if (transformKey !== 'msTransform') {
           // The Z transform will keep this in the GPU (faster, and prevents artifacts),
@@ -782,6 +792,7 @@ class TetherClass extends Evented {
     if (write) {
       defer(() => {
         extend(this.element.style, writeCSS);
+        this.trigger('repositioned');
       });
     }
   }

@@ -14,6 +14,7 @@ declare class MetricsPanelCtrl extends PanelCtrl {
     range: any;
     rangeRaw: any;
     interval: any;
+    intervalMs: any;
     resolution: any;
     timeInfo: any;
     skipDataOnInit: boolean;
@@ -25,6 +26,7 @@ declare class MetricsPanelCtrl extends PanelCtrl {
     setTimeQueryStart(): void;
     setTimeQueryEnd(): void;
     updateTimeRange(): void;
+    calculateInterval(): void;
     applyPanelTimeOverrides(): void;
     issueQueries(datasource: any): any;
     handleQueryResult(result: any): void;

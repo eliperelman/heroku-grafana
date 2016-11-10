@@ -1,4 +1,4 @@
-/*! grafana - v3.1.1-1470047149 - 2016-08-01
+/*! grafana - v4.0.0-1478693311beta1 - 2016-11-09
  * Copyright (c) 2016 Torkel Ödegaard; Licensed Apache-2.0 */
 
 System.register(["app/core/core_module","app/core/app_events"],function(a){var b,c,d,e,f;return{setters:[function(a){b=a},function(a){c=a}],execute:function(){d=function(){function a(){}return a}(),a("WizardSrv",d),e=function(){function a(){this.type="select"}return a.prototype.process=function(){return new Promise(function(a,b){})},a}(),a("SelectOptionStep",e),f=function(){function a(a){this.name=a,this.steps=[]}return a.prototype.addStep=function(a){this.steps.push(a)},a.prototype.next=function(a){var b=this,c=this.steps[0];return c.process().then(function(){if(b.steps.length!==a+1)return b.next(a+1)})},a.prototype.start=function(){return c["default"].emit("show-modal",{src:"public/app/core/components/wizard/wizard.html",model:this}),this.next(0)},a}(),a("WizardFlow",f),b["default"].service("wizardSrv",d)}}});

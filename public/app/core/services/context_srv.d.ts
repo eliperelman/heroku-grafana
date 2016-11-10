@@ -3,6 +3,7 @@ export declare class User {
     isGrafanaAdmin: any;
     isSignedIn: any;
     orgRole: any;
+    timezone: string;
     constructor();
 }
 export declare class ContextSrv {

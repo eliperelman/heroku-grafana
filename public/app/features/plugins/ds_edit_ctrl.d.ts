@@ -22,7 +22,7 @@ export declare class DataSourceEditCtrl {
     typeChanged(): any;
     updateFrontendSettings(): any;
     testDatasource(): void;
-    saveChanges(test: any): any;
+    saveChanges(): any;
     confirmDelete(): void;
     delete(s: any): void;
 }

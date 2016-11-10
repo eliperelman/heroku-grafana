@@ -1,0 +1,4 @@
+/*! grafana - v4.0.0-1478693311beta1 - 2016-11-09
+ * Copyright (c) 2016 Torkel Ödegaard; Licensed Apache-2.0 */
+
+System.register(["app/core/utils/kbn","app/core/core"],function(a){function b(){for(var a=[],b=0;b<arguments.length;b++)a[b-0]=arguments[b];for(var d=a[a.length-1],e=a[0]||"",f=1;f<a.length-1;f++)e+=a[f]||"";d=c["default"].regexEscape(d);var g=new RegExp("\\$("+d+")(?:\\W|$)|\\[\\[("+d+")\\]\\]","g"),h=g.exec(e);return null!==h}var c,d,e;return a("containsVariable",b),{setters:[function(a){c=a},function(a){d=a}],execute:function(){a("variableTypes",e={}),a("assignModelProperties",d.assignModelProperties)}}});

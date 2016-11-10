@@ -19,6 +19,7 @@ export declare class GraphiteQueryCtrl extends QueryCtrl {
     getAltSegments(index: any): any;
     segmentValueChanged(segment: any, segmentIndex: any): any;
     targetTextChanged(): void;
+    updateModelTarget(): void;
     targetChanged(): void;
     removeFunction(func: any): void;
     addFunction(funcDef: any): void;

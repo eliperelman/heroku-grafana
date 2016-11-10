@@ -1,0 +1,4 @@
+/*! grafana - v4.0.0-1478693311beta1 - 2016-11-09
+ * Copyright (c) 2016 Torkel Ödegaard; Licensed Apache-2.0 */
+
+System.register(["app/core/core"],function(a){var b,c;return{setters:[function(a){b=a}],execute:function(){c='\n<div class="gf-form-select-wrapper max-width-13">\n<select class="gf-form-input" ng-model="model.repeat" ng-options="f.value as f.text for f in variables">\n<option value=""></option>\n</div>\n',b.coreModule.directive("dashRepeatOption",["variableSrv",function(a){return{restrict:"E",template:c,scope:{model:"="},link:function(b,c){c.css({display:"block",width:"100%"}),b.variables=a.variables.map(function(a){return{text:a.name,value:a.name}}),0===b.variables.length&&b.variables.unshift({text:"No template variables found",value:null}),b.variables.unshift({text:"Disabled",value:null})}}}])}}});

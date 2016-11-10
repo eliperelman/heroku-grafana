@@ -11,9 +11,9 @@
 		<link href='[[.AppSubUrl]]/public/css/fonts.min.css' rel='stylesheet' type='text/css'>
 
 		[[if .User.LightTheme]]
-		  <link rel="stylesheet" href="[[.AppSubUrl]]/public/css/grafana.light.min.c2a2cca4.css">
+		  <link rel="stylesheet" href="[[.AppSubUrl]]/public/css/grafana.light.min.b6d46dc8.css">
 		[[else]]
-		  <link rel="stylesheet" href="[[.AppSubUrl]]/public/css/grafana.dark.min.4a9eed6d.css">
+		  <link rel="stylesheet" href="[[.AppSubUrl]]/public/css/grafana.dark.min.650773ee.css">
 		[[end]]
 
     <link rel="icon" type="image/png" href="[[.AppSubUrl]]/public/img/fav32.png">
@@ -64,18 +64,17 @@
 							<a href="http://grafana.org" target="_blank">Grafana</a>
 							<span>v[[.BuildVersion]] (commit: [[.BuildCommit]])</span>
 						</li>
-						<li>
-							[[if .NewGrafanaVersionExists]]
+						[[if .NewGrafanaVersionExists]]
+							<li>
 								<a href="http://grafana.org/download" target="_blank" bs-tooltip="'[[.NewGrafanaVersion]]'">
 									New version available!
 								</a>
-							[[end]]
-						</li>
+							</li>
+						[[end]]
 					</ul>
 				</div>
 			</footer>
 		</grafana-app>
-  </body>
 
 	<script>
 		window.grafanaBootData = {
@@ -85,7 +84,7 @@
 		};
 	</script>
 
-	<script src="[[.AppSubUrl]]/public/app/boot.1649cbaa.js"></script>
+	<script src="[[.AppSubUrl]]/public/app/boot.f5ee487b.js"></script>
 
 	[[if .GoogleAnalyticsId]]
 	<script>
@@ -117,4 +116,6 @@
 		})(window,document,'script','dataLayer','[[.GoogleTagManagerId]]');</script>
 		<!-- End Google Tag Manager -->
 	[[end]]
+
+	</body>
 </html>

@@ -1,4 +1,4 @@
-/*! grafana - v3.1.1-1470047149 - 2016-08-01
+/*! grafana - v4.0.0-1478693311beta1 - 2016-11-09
  * Copyright (c) 2016 Torkel Ödegaard; Licensed Apache-2.0 */
 
 define(["angular"],function(a){"use strict";var b=a.module("grafana.controllers");b.controller("AdminEditOrgCtrl",["$scope","$routeParams","backendSrv","$location",function(a,b,c,d){a.init=function(){b.id&&(a.getOrg(b.id),a.getOrgUsers(b.id))},a.getOrg=function(b){c.get("/api/orgs/"+b).then(function(b){a.org=b})},a.getOrgUsers=function(b){c.get("/api/orgs/"+b+"/users").then(function(b){a.orgUsers=b})},a.update=function(){a.orgDetailsForm.$valid&&c.put("/api/orgs/"+a.org.id,a.org).then(function(){d.path("/admin/orgs")})},a.updateOrgUser=function(a){c.patch("/api/orgs/"+a.orgId+"/users/"+a.userId,a)},a.removeOrgUser=function(b){c["delete"]("/api/orgs/"+b.orgId+"/users/"+b.userId).then(function(){a.getOrgUsers(a.org.id)})},a.init()}])});

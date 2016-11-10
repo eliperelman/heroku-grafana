@@ -12,6 +12,8 @@ export default class TimeSeries {
     allIsZero: boolean;
     decimals: number;
     scaledDecimals: number;
+    hasMsResolution: boolean;
+    isOutsideRange: boolean;
     lines: any;
     bars: any;
     points: any;

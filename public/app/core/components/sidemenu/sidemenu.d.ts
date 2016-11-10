@@ -12,10 +12,15 @@ export declare class SideMenuCtrl {
     orgMenu: any;
     appSubUrl: string;
     loginUrl: string;
+    orgFilter: string;
+    orgItems: any;
+    orgs: any;
+    maxShownOrgs: number;
     /** @ngInject */
     constructor($scope: any, $location: any, contextSrv: any, backendSrv: any, $element: any);
     getUrl(url: any): any;
     openUserDropdown(): void;
+    loadOrgsItems(): void;
 }
 export declare function sideMenuDirective(): {
     restrict: string;
