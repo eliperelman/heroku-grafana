@@ -1,4 +1,4 @@
-/*! grafana - v3.1.1-1470047149 - 2016-08-01
+/*! grafana - v4.0.0-1478693311beta1 - 2016-11-09
  * Copyright (c) 2016 Torkel Ödegaard; Licensed Apache-2.0 */
 
 System.register(["lodash","app/core/core_module","tether-drop"],function(a){function b(a,b){this.show=function(d){function f(){setTimeout(function(){g.tether&&g.destroy()})}var g,h=c["default"].extend(b.$new(!0),d.model);h.dismiss=function(){h.$destroy(),f()};var i=document.createElement("div");i.innerHTML=d.template,a(i)(h),g=new e["default"]({target:d.element,content:i,position:d.position,classes:"drop-popover",openOn:d.openOn||"hover",hoverCloseDelay:200,tetherOptions:{constraints:[{to:"window",pin:!0,attachment:"both"}]}}),g.on("close",function(){h.dismiss({fromDropClose:!0}),f(),d.onClose&&d.onClose()}),setTimeout(function(){g.open()},10)}}b.$inject=["$compile","$rootScope"];var c,d,e;return{setters:[function(a){c=a},function(a){d=a},function(a){e=a}],execute:function(){d["default"].service("popoverSrv",b)}}});

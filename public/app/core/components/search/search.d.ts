@@ -19,7 +19,7 @@ export declare class SearchCtrl {
     /** @ngInject */
     constructor($scope: any, $location: any, $timeout: any, backendSrv: any, contextSrv: any, $rootScope: any);
     closeSearch(): void;
-    openSearch(): void;
+    openSearch(evt: any, payload: any): any;
     keyDown(evt: any): void;
     moveSelection(direction: any): void;
     searchDashboards(): any;

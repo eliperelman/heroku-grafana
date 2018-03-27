@@ -1,4 +1,4 @@
-/*! grafana - v3.1.1-1470047149 - 2016-08-01
+/*! grafana - v4.0.0-1478693311beta1 - 2016-11-09
  * Copyright (c) 2016 Torkel Ödegaard; Licensed Apache-2.0 */
 
 System.register(["test/lib/common","app/core/table_model"],function(a){var b,c;return{setters:[function(a){b=a},function(a){c=a}],execute:function(){b.describe("when sorting table desc",function(){var a,d={sort:{col:0,desc:!0}};b.beforeEach(function(){a=new c["default"],a.columns=[{},{}],a.rows=[[100,12],[105,10],[103,11]],a.sort(d.sort)}),b.it("should sort by time",function(){b.expect(a.rows[0][0]).to.be(105),b.expect(a.rows[1][0]).to.be(103),b.expect(a.rows[2][0]).to.be(100)}),b.it("should mark column being sorted",function(){b.expect(a.columns[0].sort).to.be(!0),b.expect(a.columns[0].desc).to.be(!0)})}),b.describe("when sorting table asc",function(){var a,d={sort:{col:1,desc:!1}};b.beforeEach(function(){a=new c["default"],a.columns=[{},{}],a.rows=[[100,11],[105,15],[103,10]],a.sort(d.sort)}),b.it("should sort by time",function(){b.expect(a.rows[0][1]).to.be(10),b.expect(a.rows[1][1]).to.be(11),b.expect(a.rows[2][1]).to.be(15)})})}}});

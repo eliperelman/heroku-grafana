@@ -114,6 +114,10 @@ export class BackendSrv {
     var requestIsLocal = options.url.indexOf('/') === 0;
     var firstAttempt = options.retry === 0;
 
+    if (requestIsLocal && !options.hasSubUrl && options.retry === 0) {
+      options.url = config.appSubUrl + options.url;
+    }
+
     if (requestIsLocal && options.headers && options.headers.Authorization) {
       options.headers['X-DS-Authorization'] = options.headers.Authorization;
       delete options.headers.Authorization;
@@ -138,7 +142,8 @@ export class BackendSrv {
       //populate error obj on Internal Error
       if (_.isString(err.data) && err.status === 500) {
         err.data = {
-          error: err.statusText
+          error: err.statusText,
+          response: err.data,
         };
       }
 

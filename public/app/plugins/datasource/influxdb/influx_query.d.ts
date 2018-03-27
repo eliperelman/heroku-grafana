@@ -19,5 +19,7 @@ export default class InfluxQuery {
     addSelectPart(selectParts: any, type: any): void;
     private renderTagCondition(tag, index, interpolate);
     getMeasurementAndPolicy(interpolate: any): any;
+    interpolateQueryStr(value: any, variable: any, defaultFormatFn: any): any;
     render(interpolate?: any): any;
+    renderAdhocFilters(filters: any): any;
 }

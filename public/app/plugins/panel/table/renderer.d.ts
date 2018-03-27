@@ -13,4 +13,8 @@ export declare class TableRenderer {
     formatColumnValue(colIndex: any, value: any): any;
     renderCell(columnIndex: any, value: any, addWidthHack?: boolean): string;
     render(page: any): string;
+    render_values(): {
+        columns: any;
+        rows: any[];
+    };
 }

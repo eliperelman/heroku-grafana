@@ -5,32 +5,40 @@ import angular from 'angular';
 import _ from 'lodash';
 
 import coreModule from 'app/core/core_module';
+import {DashboardRow} from './row/row_model';
 
 export class DynamicDashboardSrv {
   iteration: number;
   dashboard: any;
+  variables: any;
 
-  init(dashboard) {
-    if (dashboard.snapshot) { return; }
-    this.process(dashboard, {});
-  }
-
-  update(dashboard) {
-    if (dashboard.snapshot) { return; }
-    this.process(dashboard, {});
-  }
-
-  process(dashboard, options) {
-    if (dashboard.templating.list.length === 0) { return; }
-
+  init(dashboard, variableSrv) {
     this.dashboard = dashboard;
+    this.variables = variableSrv.variables;
+  }
+
+  process(options) {
+    if (this.dashboard.snapshot || this.variables.length === 0) {
+      return;
+    }
+
     this.iteration = (this.iteration || new Date().getTime()) + 1;
 
+    options = options || {};
     var cleanUpOnly = options.cleanUpOnly;
-
     var i, j, row, panel;
+
+    // cleanup scopedVars
     for (i = 0; i < this.dashboard.rows.length; i++) {
       row = this.dashboard.rows[i];
+      for (j = 0; j < row.panels.length; j++) {
+        delete row.panels[j].scopedVars;
+      }
+    }
+
+    for (i = 0; i < this.dashboard.rows.length; i++) {
+      row = this.dashboard.rows[i];
+
       // handle row repeats
       if (row.repeat) {
         if (!cleanUpOnly) {
@@ -38,7 +46,7 @@ export class DynamicDashboardSrv {
         }
       } else if (row.repeatRowId && row.repeatIteration !== this.iteration) {
         // clean up old left overs
-        this.dashboard.rows.splice(i, 1);
+        this.dashboard.removeRow(row, true);
         i = i - 1;
         continue;
       }
@@ -54,8 +62,6 @@ export class DynamicDashboardSrv {
           // clean up old left overs
           row.panels = _.without(row.panels, panel);
           j = j - 1;
-        } else if (!_.isEmpty(panel.scopedVars) && panel.repeatIteration !== this.iteration) {
-          panel.scopedVars = {};
         }
       }
     }
@@ -75,12 +81,14 @@ export class DynamicDashboardSrv {
       row = this.dashboard.rows[i];
       if (row.repeatRowId === sourceRowId && row.repeatIteration !== this.iteration) {
         copy = row;
+        copy.copyPropertiesFromRowSource(sourceRow);
         break;
       }
     }
 
     if (!copy) {
-      copy = angular.copy(sourceRow);
+      var modelCopy = angular.copy(sourceRow.getSaveModel());
+      copy = new DashboardRow(modelCopy);
       this.dashboard.rows.splice(sourceRowIndex + repeatIndex, 0, copy);
 
       // set new panel ids
@@ -98,8 +106,7 @@ export class DynamicDashboardSrv {
 
   // returns a new row clone or reuses a clone from previous iteration
   repeatRow(row, rowIndex) {
-    var variables = this.dashboard.templating.list;
-    var variable = _.findWhere(variables, {name: row.repeat});
+    var variable = _.find(this.variables, {name: row.repeat});
     if (!variable) {
       return;
     }
@@ -120,7 +127,6 @@ export class DynamicDashboardSrv {
         panel = copy.panels[i];
         panel.scopedVars = {};
         panel.scopedVars[variable.name] = option;
-        panel.repeatIteration = this.iteration;
       }
     });
   }
@@ -160,8 +166,7 @@ export class DynamicDashboardSrv {
   }
 
   repeatPanel(panel, row) {
-    var variables = this.dashboard.templating.list;
-    var variable = _.findWhere(variables, {name: panel.repeat});
+    var variable = _.find(this.variables, {name: panel.repeat});
     if (!variable) { return; }
 
     var selected;
@@ -173,7 +178,7 @@ export class DynamicDashboardSrv {
 
     _.each(selected, (option, index) => {
       var copy = this.getPanelClone(panel, row, index);
-      copy.span = Math.max(12 / selected.length, panel.minSpan);
+      copy.span = Math.max(12 / selected.length, panel.minSpan || 4);
       copy.scopedVars = copy.scopedVars || {};
       copy.scopedVars[variable.name] = option;
     });

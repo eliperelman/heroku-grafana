@@ -1,0 +1,90 @@
+{
+  "_args": [
+    [
+      "virtual-scroll@^1.1.1",
+      "/go/src/github.com/grafana/grafana"
+    ]
+  ],
+  "_from": "virtual-scroll@>=1.1.1 <2.0.0",
+  "_id": "virtual-scroll@1.1.1",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/virtual-scroll",
+  "_nodeVersion": "0.12.7",
+  "_npmOperationalInternal": {
+    "host": "packages-12-west.internal.npmjs.com",
+    "tmp": "tmp/virtual-scroll-1.1.1.tgz_1465494894318_0.30568657792173326"
+  },
+  "_npmUser": {
+    "email": "ayamflow@gmail.com",
+    "name": "ayamflow"
+  },
+  "_npmVersion": "3.9.5",
+  "_phantomChildren": {},
+  "_requested": {
+    "name": "virtual-scroll",
+    "raw": "virtual-scroll@^1.1.1",
+    "rawSpec": "^1.1.1",
+    "scope": null,
+    "spec": ">=1.1.1 <2.0.0",
+    "type": "range"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/virtual-scroll/-/virtual-scroll-1.1.1.tgz",
+  "_shasum": "924cf5c8cc067af44b802d8553008a342ac1979c",
+  "_shrinkwrap": null,
+  "_spec": "virtual-scroll@^1.1.1",
+  "_where": "/go/src/github.com/grafana/grafana",
+  "author": {
+    "email": "=",
+    "name": "="
+  },
+  "bugs": {
+    "url": "https://github.com/ayamflow/virtual-scroll/issues"
+  },
+  "dependencies": {
+    "bindall-standalone": "^1.0.5",
+    "lethargy": "^1.0.2",
+    "object-assign": "^4.0.1",
+    "tiny-emitter": "^1.0.0"
+  },
+  "description": "Smooth fake scroll using CSS transform",
+  "devDependencies": {
+    "prova": "^2.1.2",
+    "tiny-trigger": "github:scottcorgan/tiny-trigger"
+  },
+  "directories": {},
+  "dist": {
+    "shasum": "924cf5c8cc067af44b802d8553008a342ac1979c",
+    "tarball": "https://registry.npmjs.org/virtual-scroll/-/virtual-scroll-1.1.1.tgz"
+  },
+  "gitHead": "e961221a4b29bbebf32d1e9b7d839dfdb9f99de7",
+  "homepage": "https://github.com/ayamflow/virtual-scroll",
+  "keywords": [
+    "virtual",
+    "scroll",
+    "smooth"
+  ],
+  "license": "MIT",
+  "main": "src/index.js",
+  "maintainers": [
+    {
+      "email": "ayamflow@gmail.com",
+      "name": "ayamflow"
+    }
+  ],
+  "name": "virtual-scroll",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ayamflow/virtual-scroll.git"
+  },
+  "scripts": {
+    "test": "prova ./test/**/*.js -b -l phantom -q",
+    "test-browser": "prova ./test/**/*.js -b -l chrome -q"
+  },
+  "version": "1.1.1"
+}

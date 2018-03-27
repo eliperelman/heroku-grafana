@@ -16,4 +16,9 @@ import { queryPartEditorDirective } from './components/query_part/query_part_edi
 import { WizardFlow } from './components/wizard/wizard';
 import coreModule from './core_module';
 import appEvents from './app_events';
-export { arrayJoin, coreModule, grafanaAppDirective, sideMenuDirective, navbarDirective, searchDirective, colorPicker, liveSrv, layoutSelector, switchDirective, infoPopover, Emitter, appEvents, dashboardSelector, queryPartEditorDirective, WizardFlow };
+import colors from './utils/colors';
+import { assignModelProperties } from './utils/model_utils';
+import { contextSrv } from './services/context_srv';
+import { KeybindingSrv } from './services/keybindingSrv';
+import { helpModal } from './components/help/help';
+export { arrayJoin, coreModule, grafanaAppDirective, sideMenuDirective, navbarDirective, searchDirective, colorPicker, liveSrv, layoutSelector, switchDirective, infoPopover, Emitter, appEvents, dashboardSelector, queryPartEditorDirective, WizardFlow, colors, assignModelProperties, contextSrv, KeybindingSrv, helpModal };

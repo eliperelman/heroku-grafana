@@ -10,6 +10,9 @@ declare class SingleStatCtrl extends MetricsPanelCtrl {
     fontSizes: any[];
     unitFormats: any[];
     invalidGaugeRange: boolean;
+    panel: any;
+    events: any;
+    valueNameOptions: any[];
     panelDefaults: {
         links: any[];
         datasource: any;

@@ -5,9 +5,7 @@ export declare function queryPartEditorDirective($compile: any, templateSrv: any
     template: string;
     scope: {
         part: string;
-        removeAction: string;
-        partUpdated: string;
-        getOptions: string;
+        handleEvent: string;
     };
     link: ($scope: any, elem: any) => void;
 };
