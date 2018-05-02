@@ -62,11 +62,17 @@ CREATE TABLE session (key CHAR(16) NOT NULL, data bytea, expiry INT NOT NULL, PR
 \dt
 ```
 
-Now configure Grafana to use Postgres as the session store:
+Now configure Grafana to use Postgres as the session store.  
 
 ```sh
 heroku config:set GF_SESSION_PROVIDER=postgres
-heroku config:set GF_SESSION_PROVIDER_CONFIG="$(heroku pg:credentials DATABASE | grep dbname | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')"
+heroku config:set GF_SESSION_PROVIDER_CONFIG="$(heroku pg:credentials:url DATABASE | grep dbname | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')"
+```
+
+If you're running Heroku on Windows, set GF_SESSION_PROVIDER_CONFIG (space-delimited) based on the output of: 
+
+```sh
+heroku pg:credentials:url DATABASE
 ```
 
 #### Deploy
