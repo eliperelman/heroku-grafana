@@ -20,7 +20,7 @@ fi
 echo "Checking buildpack"
 if ! heroku buildpacks -a $HEROKU_APP | grep "http://github.com/ryandotsmith/null-buildpack.git" > /dev/null; then
     echo "Setting buildpack"
-    heroku buildpacks:set http://github.com/ryandotsmith/null-buildpack.git
+    heroku buildpacks:set http://github.com/ryandotsmith/null-buildpack.git -a $HEROKU_APP
 fi
 
 echo "Checking for Postgres addon"
@@ -41,7 +41,7 @@ GF_DATABASE_USER=${BASH_REMATCH[1]}
 GF_DATABASE_PASSWORD=${BASH_REMATCH[2]}
 
 echo "Getting Postgres credentials"
-POSTGRES_CREDENTIALS=`heroku pg:credentials DATABASE -a $HEROKU_APP | grep dbname | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//'`
+POSTGRES_CREDENTIALS=`heroku pg:credentials:url DATABASE -a $HEROKU_APP | grep dbname | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//'`
 
 if [[ ! $POSTGRES_CREDENTIALS =~ ^\"(.*)\"$ ]]; then
     echo "POSTGRES_CREDENTIALS format unrecognised"
